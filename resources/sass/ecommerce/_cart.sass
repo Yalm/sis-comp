@@ -1,0 +1,76 @@
+.card-header-black
+    background-color: #313537
+    color: #fff
+.price-item-cart
+    font-size: 20px
+    margin-left: 10px
+.item-cart-text , .price-item-cart
+    padding-top: 8px
+.cart-items
+    border: none
+    .qty
+        color: #888
+        text-align: center
+        width: 34px
+        height: 28px
+        border: 1px solid #5e5e5e
+        padding: 0
+        margin-top: 8px
+.cart
+    padding: 4rem 0 10.1rem 0
+.checkout-review-order
+    background: rgba(84, 84, 84, .05)
+    padding: 10px 40px 40px
+    border: none
+    position: relative
+    &:after ,&:before
+        position: absolute
+        bottom: -10px
+        left: 0
+        transform: rotate(180deg)
+        content: ""
+        display: block
+        height: 10px
+        width: 100%
+        background-color: transparent
+        background-size: 20px 20px
+        background-position: 0 10px, 40px 40px
+        background-image: radial-gradient(closest-side, transparent 9px, rgba(84, 84, 84, .05) 100%)
+    &:before
+        top: -10px
+        transform: rotate(0deg)
+.checkout-review-table
+    th
+        padding: 1.50rem .75rem
+@media only screen and (max-width: 993px)
+    .card-header-black
+        background-color: #222
+    .item-cart-text
+        font-size: 15px
+    .content-cart
+        flex-direction: column
+        .actions-cart
+            order: 2
+        .price-item-cart
+            order: 1
+
+.cart_empty
+    padding: 5rem 0 10rem 0
+    p
+        font-size: 3.55rem
+        line-height: 1.2em
+    i
+        font-size: 180px
+    a
+        font-size: 1.25rem
+
+@media only screen and (max-width: 770px)
+    .cart_empty
+        padding: 5rem 0 12rem 0
+        p
+            font-size: 1.55rem
+            line-height: 1.2em
+        i
+            font-size: 80px
+        a
+            font-size: 1rem

@@ -1,0 +1,49 @@
+
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+
+require('./bootstrap');
+
+import Vue from 'vue';
+import VueSweetalert2 from 'vue-sweetalert2';
+
+/**
+ * The following block of code may be used to automatically register your
+ * Vue components. It will recursively scan this directory for the Vue
+ * components and automatically register them with their "basename".
+ *
+ * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ */
+
+// const files = require.context('./', true, /\.vue$/i)
+// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+const options = {
+    confirmButtonColor: '#222222',
+    cancelButtonColor: '#ff7674'
+}
+
+Vue.use(VueSweetalert2,options);
+Vue.component('product-component', require('./components/ProductComponent.vue').default);
+Vue.component('cart-modal-component', require('./components/CartModalComponent.vue').default);
+Vue.component('cart-component', require('./components/CartComponent.vue').default);
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+const ecommerce = new Vue({
+    el: '#ecommerce',
+    data: {
+        count: 0,
+        mutableList: []
+    },
+    created() {
+        axios.get('/count-cart').then( response => {
+            this.count = response.data;
+        });
+    }
+});

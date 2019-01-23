@@ -1,0 +1,133 @@
+.carousel
+    padding-bottom: 2rem
+    &:focus
+        outline: none
+    .carousel-item img
+        width: 100%
+        height: auto
+    .carousel-caption
+        bottom: 35%
+        left: 12%
+        width: 35%
+        text-align: left
+        h3
+            font-size: 39px
+            color: rgb(49, 53, 55)
+            font-weight: 400
+            animation-name: bounceInLeft
+            animation-duration: 0.9s
+        p
+            color: rgb(85, 85, 85)
+            animation-name: bounceInLeft
+            animation-duration: 0.8s
+        a
+            transition: none 0s ease 0s
+            line-height: 15px
+            border-width: 2px
+            margin: 0px
+            padding: 12px 26px
+            letter-spacing: 2px
+            font-weight: 400
+            font-size: 15px
+            text-transform: uppercase
+            color: #fff
+            background-color: #313537
+            border: 2px solid transparent
+            animation-name: bounceInLeft
+            animation-duration: 1s
+            &:hover
+                background-color: transparent
+                color: #313537
+                border-color: #313537
+    .carousel-control-prev-icon
+        background-image: url("data:image/svg+xml;utf8;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyMCcgaGVpZ2h0PScyMCcgZmlsbD0nIzY2Nicgdmlld0JveD0nMCAwIDIwIDIwJz48cGF0aCBkPSdNNi4wNzgsMTUuMzY2bC01LjQyNC01LjAyMWMtMC4wOTgtMC4wOTEtMC4xNTYtMC4yMTgtMC4xNTYtMC4zNDRjMC0wLjEzLDAuMDU1LTAuMjUzLDAuMTU2LTAuMzQzIGw1LjQyNC01LjAyMmMwLjIwNy0wLjE5MSwwLjUzOS0wLjE5MSwwLjc0NSwwYzAuMjA3LDAuMTkxLDAuMjA3LDAuNDk4LDAsMC42ODlMMi4yOTcsOS41MTdoMTYuNjhjMC4yOTIsMCwwLjUyNSwwLjIxNywwLjUyNSwwLjQ4NyBjMCwwLjI3MS0wLjIzMywwLjQ4OS0wLjUyNSwwLjQ4OUgyLjI5N2w0LjUyNiw0LjE5YzAuMTAyLDAuMDk0LDAuMTU2LDAuMjIxLDAuMTU2LDAuMzQzcy0wLjA1MSwwLjI1LTAuMTU2LDAuMzQ0IEM2LjYxNywxNS41NTMsNi4yODEsMTUuNTUzLDYuMDc4LDE1LjM2NnonLz48L3N2Zz4=")
+        cursor: pointer
+        width: 30px
+        height: 30px
+    .carousel-control-next-icon
+        background-image: url("data:image/svg+xml;utf8;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyMCcgaGVpZ2h0PScyMCcgZmlsbD0nIzY2Nicgdmlld0JveD0nMCAwIDIwIDIwJz48cGF0aCBkPSdNMTMuOTIyLDE1LjM2Nmw1LjQyNS01LjAyMmMwLjA5OC0wLjA5LDAuMTU2LTAuMjE2LDAuMTU2LTAuMzQzYzAtMC4xMy0wLjA1NS0wLjI1My0wLjE1Ni0wLjM0MyBsLTUuNDI1LTUuMDIyYy0wLjIwNi0wLjE5MS0wLjUzOC0wLjE5MS0wLjc0NSwwcy0wLjIwNywwLjUsMCwwLjY5bDQuNTI3LDQuMTkxSDEuMDI0Yy0wLjI5MywwLTAuNTI2LDAuMjE3LTAuNTI2LDAuNDg2IGMwLDAuMjcxLDAuMjMzLDAuNDg4LDAuNTI2LDAuNDg4aDE2LjY4bC00LjUyNyw0LjE5MWMtMC4xMDIsMC4wOTUtMC4xNTYsMC4yMjEtMC4xNTYsMC4zNDRjMCwwLjEyMiwwLjA1MSwwLjI0OSwwLjE1NiwwLjM0MyBDMTMuMzg0LDE1LjU1NCwxMy43MiwxNS41NTQsMTMuOTIyLDE1LjM2NnonLz48L3N2Zz4=")
+        cursor: pointer
+        width: 30px
+        height: 30px
+@media only screen and (max-width: 1200px)
+    .carousel
+        .carousel-caption
+            bottom: 32%
+            h3
+                font-size: 30px
+            a
+                padding: 10px 15px
+                font-size: 12px
+@media only screen and (max-width: 998px)
+    .carousel
+        .carousel-caption
+            bottom: 15%
+            width: 45%
+@media only screen and (max-width: 500px)
+    .carousel
+        .carousel-caption
+            bottom: 0
+            h3
+                font-size: 25px
+            p
+                font-size: 13px
+@media screen and (max-width: 400px)
+    .carousel
+        .carousel-caption
+            width: 60%
+.categories-home
+    @media screen and (max-width: 768px)
+        display: none
+    .categorie-title
+        text-transform: uppercase
+        font-size: 17px
+        font-weight: 400
+        margin-bottom: 1px
+        font-style: normal
+        line-height: 1.2em
+        color: #313537
+        letter-spacing: .08em
+        border-bottom: 2px solid #313537
+    .categorie-list
+        border-top: 1px solid #313537
+        padding: 1rem 0 0 0
+        color: #333
+        list-style: none
+        .categorie-item
+            padding: 10px 0 10px 9px
+            border-top: 1px solid #f3f3f3
+            &:first-child
+                border-top: none
+            a
+                color: #333
+                font-size: 15px
+                font-weight: 400
+            .categorie-item_thum
+                width: 7%
+                height: 7%
+.module-title
+    font-size: 18px
+    font-weight: 500
+    letter-spacing: .1em
+    margin: 0 auto 40px
+    text-align: center
+    text-transform: uppercase
+    color: #444
+    span
+        padding: 0 16px 10px 16px
+        border-bottom: 2px solid #3a3a3a
+        font-size: 18px
+        font-weight: 500
+        letter-spacing: .1em
+        text-transform: uppercase
+@keyframes bounceInLeft
+    0%
+        opacity: 0
+        transform: translateX(-2000px)
+    60%
+        opacity: 1
+        transform: translateX(30px)
+    80%
+        transform: translateX(-10px)
+    100%
+        transform: translateX(0)

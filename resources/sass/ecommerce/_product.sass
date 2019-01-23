@@ -1,0 +1,136 @@
+.product-thumbnail
+    margin: 0 0 35px 0
+    padding: 0
+    position: relative
+    overflow: hidden
+    &.sold_out_product
+        .sold_out , .sold_out-back
+            display: block
+        .add-cart
+            display: none
+    &:hover
+        .product-actions
+            opacity: 1
+    &.col-12 .img-fluid
+        max-height: 200px
+        min-height: 200px
+    .product-actions
+        margin: 0
+        padding: 0
+        position: absolute
+        left: 25%
+        top: 50%
+        opacity: 0
+        transition: opacity .3s ease-out
+        button
+            height: 2.75rem
+            width: 2.75rem
+            padding: 0
+            border-radius: 50%
+            background-color: #313537
+            color: #EEEEEF
+            margin: 0 3px
+            cursor: pointer
+            &:disabled
+                color: graytext
+            &.in_progress
+                animation: rotation 1s ease-in-out infinite
+            &:hover
+                transform: scale(1) translateY(0)
+            i
+                padding-top: 7px
+.product-view
+    padding: 1rem 0
+    position: relative
+    .sold_out-back
+        position: absolute
+        width: 100%
+        height: 100%
+        top: 0
+        left: 0
+        background-color: #333
+        opacity: 0.7
+        display: none
+    .sold_out
+        top: 2em
+        left: -4em
+        z-index: 1
+        color: #fff
+        display: none
+        position: absolute
+        letter-spacing: .06em
+        background-color: #313537
+        padding: 0.5em 5em 0.4em 5em
+        box-shadow: 0 0 0.5em rgba(0,0,0,0.5)
+        font: bold 16px/1.2em Arial, Sans-Serif
+        transform: rotate(-45deg) scale(0.74,1)
+        &:before
+            content: ''
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            position: absolute
+            margin: -0.3em -5em
+            transform: scale(0.7)
+            border: 2px rgba(255,255,255,0.7) dashed
+    .product-content
+        padding: 0
+        margin: 0
+        position: relative
+        .add-product
+            position: absolute
+            bottom: 0
+            right: 0
+            display: none
+        .product-brand
+            font-size: 11px
+            margin-bottom: 12px
+            font-weight: 500
+            font-style: normal
+            line-height: 1em
+            text-transform: uppercase
+            color: #adadad
+            letter-spacing: .2em
+        .product-description
+            white-space: nowrap
+            overflow: hidden
+            text-overflow: ellipsis
+            max-width: 100%
+        .product-title
+            font-size: 15px
+            font-weight: 400
+            font-style: normal
+            line-height: 1.4em
+            text-transform: none
+            letter-spacing: 0
+            white-space: nowrap
+            overflow: hidden
+            text-overflow: ellipsis
+            max-width: 100%
+            a
+                color: #515151
+        .price
+            font-size: 18px
+            font-weight: 500
+            line-height: 1.2em
+            text-transform: none
+            color: #333
+            letter-spacing: 0
+        &.col-md-8 .product-price-and-shipping
+            margin-bottom: 1rem
+
+@media only screen and (max-width: 720px)
+    .product-view
+        .product-content.col-12 .add-product
+            display: block !important
+        .product-brand
+            display: none
+        .product-thumbnail
+            margin-bottom: 1rem
+
+@keyframes rotation
+    0%
+        transform: rotate(0deg)
+    100%
+        transform: rotate(360deg)
