@@ -22,7 +22,7 @@ class OrderController extends Controller
         $data = Crypt::decrypt($id);
         $order = Order::findOrFail($data['id']);
 
-        return view('shop.profile.order.show',[
+        return view('ecommerce.profile.order.show',[
             'order' => $order
         ]);
     }

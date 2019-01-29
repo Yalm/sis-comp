@@ -35,7 +35,7 @@
 <div class="tabs-container">
     <div class="page-width">
     <span class="tab-link">Descripción</span>
-    <p>{!! $product->description !!}</p>
+    <p class="text-center">{!! $product->description !!}</p>
     </div>
 </div>
 @endsection

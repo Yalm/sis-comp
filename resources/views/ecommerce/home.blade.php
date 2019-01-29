@@ -22,7 +22,7 @@
                         <div class="carousel-caption">
                             <h3>Monitor Samsung "27" LED Curved</h3>
                             <p>Descubre una experiencia de visualización realmente envolvente con el monitor curvo de Samsung.</p>
-                            <a routerLink="/">COMPRA AHORA</a>
+                            <a href="/p/samsung-monitor-led-27-curvo-hdmi-vga-display-port-lc27f591fdlxpe-s1glic">COMPRA AHORA</a>
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -31,7 +31,7 @@
                         <div class="carousel-caption">
                             <h3>Monitor Samsung "27" LED Curved</h3>
                             <p>Descubre una experiencia de visualización realmente envolvente con el monitor curvo de Samsung.</p>
-                            <a routerLink="/">COMPRA AHORA</a>
+                            <a href="/p/samsung-monitor-led-27-curvo-hdmi-vga-display-port-lc27f591fdlxpe-s1glic">COMPRA AHORA</a>
                         </div>
                     </div>
                 </div>

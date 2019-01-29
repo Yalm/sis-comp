@@ -86,9 +86,8 @@
                 <div class="row">
                     <div class="col-md-4">
                         <h2 class="footer-title-items">SIS & COMP</h2>
-                        <a class="item-link" href="">Envios</a>
-                        <a class="item-link" href="">Nosotros</a>
-                        <a class="item-link" href="">Seguridad de pago</a>
+                        <a class="item-link" href="/terms_and_conditions">Terms & Condiciones</a>
+                        <a class="item-link" href="/about">Nosotros</a>
                     </div>
                     <div class="col-md-4">
                         <h2 class="footer-title-items">Productos</h2>
@@ -99,6 +98,9 @@
                     </div>
                     <div class="col-md-4">
                         <h2 class="footer-title-items"> DETALLES DE CONTACTO</h2>
+                        <p class="d-flex align-items-center item-link"><i class="material-icons">location_on</i><span class="ml-2">JR.Loreto #594 - Huancayo</span></p>
+                        <p class="d-flex align-items-center item-link"><i class="material-icons">phone</i><span class="ml-2">(064) 782433</span></p>
+                        <p class="d-flex align-items-center item-link"><i class="material-icons">email</i><span class="ml-2">soporte@tiendassiscomp.com</span></p>
                     </div>
                     <div class="col-12 text-center copyright">
                         <span>© {{ date('Y') }} SIS & COM todos los derechos reservados</span>

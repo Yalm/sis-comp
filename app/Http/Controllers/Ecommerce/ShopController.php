@@ -31,4 +31,33 @@ class ShopController extends Controller
         }
         return view('ecommerce/shop',['categorySearch' => $request->category,'search' => $request->search]);
     }
+
+    public function about()
+    {
+        return view('ecommerce/about');
+    }
+
+    public function contact()
+    {
+        return view('ecommerce/contact');
+    }
+    public function terms()
+    {
+        return view('ecommerce/terms');
+    }
+
+    public function sendContact(Request $request)
+    {
+        /*Mail::send('emails.contact-us',
+        [
+            'email' => $request->email,
+            'user_message' => $request->message,
+        ], function($message) use($request)
+        {
+            $message->from($request->email);
+            $message->to('i2917724@continental.edu.pe', 'Admin')->subject('Mensaje de Contáctanos');
+        });*/
+        return back()->with('success', '¡Gracias por contactarnos!');
+
+    }
 }

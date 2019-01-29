@@ -97,7 +97,7 @@ class ProductTableSeeder extends Seeder
             'category_id' => 4
         ]);
         Product::create([
-            'cover' => 'http://i.linio.com/p/28d43e8f843ce5aebb053ef97d6f0785-product.jpg',
+            'cover' => 'http://i.linio.com/p/509ee7cb8f2946f3be8235f8d42b8a83-product.jpg',
             'description' => 'SAMSUNG 27" LED MONITOR CON DISEÑO CURVO - LC27F591FDLXPEPanel delantero y trasero de curvatura esculpida para un diseño moderno y elegante
             Parlantes integrados y múltiples puertos para satisfacer todas tus necesidades de entretenimiento• Parlantes estéreo dobles integrados: Los parlantes dobles de 5 vatios integrados en la pantalla te permiten disfrutar de películas, juegos y contenido en línea sin necesidad de abarrotar el escritorio con cables o parlantes adicionales.• Interfaz de conexión triple: Los puertos HDMI, DP y D-sub proporcionan una interfaz de conexión múltiple de alto rendimiento que te permite conectar PC, consolas de juego, monitores adicionales y otros dispositivos con facilidad.',
             'short_description' => ' Parlantes integrados y múltiples puertos para satisfacer todas tus necesidades de entretenimiento',
@@ -108,7 +108,7 @@ class ProductTableSeeder extends Seeder
             'category_id' => 3
         ]);
         Product::create([
-            'cover' => 'http://i.linio.com/p/509ee7cb8f2946f3be8235f8d42b8a83-product.jpg',
+            'cover' => 'http://i.linio.com/p/e12f2f708e296f27c3a5bcd38167c532-product.jpg',
             'description' => 'El diseño elegante complementa sus dispositivos HP favoritos y se adapta cómodamente a cualquier lugar.<br>La conexión inalámbrica de 2,4 GHz lo mantiene conectado de forma confiable.<br>Con hasta 16 meses de uso con una sola batería AA, este mouse está diseñado para superar los límites.',
             'short_description' => 'Era hora de que sus accesorios se adaptaran a su individualidad. Le presentamos su nuevo mouse inalámbrico1, diseñado cuidadosamente para aportar su exclusivo estilo delgado a su trabajo. Es funcional. Es portátil. Es moderno. Es suyo.',
             'name' => 'MICROSOFT Wireless Mbl Mouse 1850 Pink Rosado - U7Z-00021',

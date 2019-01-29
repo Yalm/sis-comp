@@ -21,6 +21,10 @@ Route::get('/count-cart', 'Ecommerce\ShoppingCartController@count')->name('cart.
 Route::get('/p/{url}', 'Ecommerce\ShopController@product')->name('product.show.ecommerce');
 
 Route::get('/shop','Ecommerce\ShopController@shop')->name('shop');;
+Route::get('/about','Ecommerce\ShopController@about')->name('about');;
+Route::get('/contact','Ecommerce\ShopController@contact')->name('contact');;
+Route::post('/contact', 'Ecommerce\ShopController@sendContact');
+Route::get('/terms_and_conditions','Ecommerce\ShopController@terms');
 
 Route::group(['middleware'=>['auth:web','verified']], function()
 {
