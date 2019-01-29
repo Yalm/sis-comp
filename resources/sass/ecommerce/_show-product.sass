@@ -1,0 +1,78 @@
+.product-info-section
+    .product-info-cotent
+        padding: 45px 0 0 50px
+    .available
+        margin-bottom: 8px
+    .product-brand
+        color: #bcbcbc
+        font-size: 14px
+        text-transform: uppercase
+        letter-spacing: .26em
+        display: inline-block
+        margin-bottom: 15px
+    h1
+        margin: 0 0 10px
+        font-size: 20px
+        color: #373737
+        text-transform: none
+    .current-price
+        font-size: 22px
+        font-weight: 400
+        line-height: 1.2em
+        text-transform: uppercase
+        color: #333
+        letter-spacing: 0
+        margin-bottom: 2rem
+    .description
+        margin-bottom: 45px
+        color: #777
+        font-size: 16px
+        line-height: 23px
+.tabs-container
+    background: #fbfbfb
+    padding: 100px
+    width: 100%
+    margin-top: 9rem
+    .page-width
+        padding: 0 101px
+        text-align: center
+    .tab-link
+        border-bottom: 2px solid #3a3a3a
+        padding: .5em 1em
+        color: #414141
+        font-size: 1.3em
+    p
+        padding-top: 3.75rem
+        text-align: start
+::ng-deep .mat-spinner
+    margin: 0 auto
+
+
+@media (max-width: 990px)
+    .product-info-cotent
+        padding: 0 !important
+    .tabs-container .page-width
+        padding: 0
+@media (max-width: 600px)
+    .product-info-cotent
+        padding: 30px !important
+    .tabs-container
+        padding: 30px
+        margin-top: 10px
+
+.breadcrumb
+    list-style: none
+    text-align: right
+    padding: 0
+    background-color: transparent
+    li
+        &::before
+            display: inline-block
+            padding-right: 0.5rem
+            padding-left: 0.5rem
+            color: rgb(102, 102, 102)
+            content: "→"
+        &:first-child::before
+            content: none
+        a
+            color: #333

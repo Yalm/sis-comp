@@ -9,13 +9,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Sis & Comp, lo mejor en equipos de computo y accesorios</title>
+    <meta name="description" content="Sis & Comp Perú lo mejor en equipos de computo y accesorios, solo las mejores marcas">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/ecommerce.js') }}" defer></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/ecommerce.css') }}" rel="stylesheet">
@@ -26,16 +24,35 @@
         <header>
             <nav class="navbar container header-top">
                 <a class="navbar-brand header_title flex-grow-1" href="{{ url('/') }}">SIS & COMP</a>
-                <form action class="search-ui p-2 d-flex align-items-center">
-                    <input type="text" aria-label="search products" name="search" placeholder="Search..." class="search-input"
+                <form action="{{ route('shop') }}" method="get" class="search-ui p-2 d-flex align-items-center">
+                    <input type="text" aria-label="search products" name="search" placeholder="Buscar..." class="search-input"
                         autocomplete="off">
                     <button type="submit" aria-label="search products">
                         <i class="material-icons">search</i>
                     </button>
                 </form>
+                @guest
+                <a  title="Login" class="p-2 account_circle_login" href="{{ url('login') }}"><i class="material-icons">account_circle</i></a>
+                @else
+                <div class="user-circle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" class="img-fluid" alt="customer photo">
+                </div>
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ url('/profile') }}">Perfil</a>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                        Salir
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
+                @endguest
                 <cart-modal-component :count="count"></cart-modal-component>
             </nav>
-
             <nav class="top-menu">
                 <ul class="d-flex top-menu-content container">
                     <li class="item-page">
@@ -51,8 +68,8 @@
                         <a class="nav-link" href="{{ url('/contact') }}">Contáctanos</a>
                     </li>
                     <li class="item-page mobile">
-                        <button title="show menu" type="button" class="nav-link">
-                            Menu
+                        <button title="show menu" type="button" class="nav-link d-flex align-items-center">
+                            <span>Menu</span>
                             <i class="material-icons">menu</i>
                         </button>
                     </li>
@@ -60,9 +77,9 @@
             </nav>
         </header>
 
-        <div class="container">
-            <div class="row">@yield('content')</div>
-        </div>
+        <main>
+            @yield('content')
+        </main>
 
         <footer class="footer">
             <div class="container">
@@ -75,9 +92,10 @@
                     </div>
                     <div class="col-md-4">
                         <h2 class="footer-title-items">Productos</h2>
-                        <a class="item-link" href="">Envios</a>
-                        <a class="item-link" href="">Nosotros</a>
-                        <a class="item-link" href="">Seguridad de pago</a>
+                        @foreach ($providerCategories as $category)
+                        <a class="item-link" href="/shop?category={{$category->id}}">{{ $category->name }}</a>
+                        @break($loop->index == 5)
+                        @endforeach
                     </div>
                     <div class="col-md-4">
                         <h2 class="footer-title-items"> DETALLES DE CONTACTO</h2>
@@ -89,6 +107,8 @@
             </div>
         </footer>
     </div>
-
+    <!-- Scripts -->
+    @yield('myjsfile')
+    <script src="{{ asset('js/ecommerce.js') }}" defer></script>
 </body>
 </html>

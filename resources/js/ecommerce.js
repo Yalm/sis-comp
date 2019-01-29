@@ -9,7 +9,8 @@ require('./bootstrap');
 
 import Vue from 'vue';
 import VueSweetalert2 from 'vue-sweetalert2';
-
+import es from 'vee-validate/dist/locale/es';
+import VeeValidate, { Validator } from 'vee-validate';
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -26,9 +27,15 @@ const options = {
 }
 
 Vue.use(VueSweetalert2,options);
+Vue.use(VeeValidate, { events: 'blur' });
+Validator.localize('es', es);
+
 Vue.component('product-component', require('./components/ProductComponent.vue').default);
 Vue.component('cart-modal-component', require('./components/CartModalComponent.vue').default);
 Vue.component('cart-component', require('./components/CartComponent.vue').default);
+Vue.component('checkout-component', require('./components/CheckoutComponent.vue').default);
+Vue.component('shop-component', require('./components/ShopComponent.vue').default);
+Vue.component('qty-component', require('./components/QtyComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -45,5 +52,6 @@ const ecommerce = new Vue({
         axios.get('/count-cart').then( response => {
             this.count = response.data;
         });
-    }
+    },
+
 });

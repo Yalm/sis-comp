@@ -10,7 +10,8 @@ class ShoppingCartController extends Controller
     public function index(Request $request)
     {
         $cart = \Cart::getContent();
-        return view('ecommerce/shopping-cart')->with('cart', $cart);
+        $total = \Cart::getTotal();
+        return view('ecommerce/shopping-cart', ['cart'=> $cart,'total' => $total]);
     }
 
 
@@ -40,7 +41,8 @@ class ShoppingCartController extends Controller
             'quantity' => $qty,
             'attributes' => array(
                 'cover' => $request->cover,
-                'stock' => $request->stock
+                'stock' => $request->stock,
+                'url' => $request->url
             )
         ));
 
@@ -52,6 +54,19 @@ class ShoppingCartController extends Controller
     {
         $count = \Cart::getTotalQuantity();
         return response()->json($count, 200);
+    }
+
+    public function update(Request $request,$id)
+    {
+        \Cart::update($id, array(
+            'quantity' => array(
+                'relative' => false,
+                'value' => $request->qty
+            ),
+         ));
+         $total = \Cart::getTotal();
+         $count_cart = \Cart::getTotalQuantity();
+         return response()->json(['message' => 'success','total' => $total, 'count_cart' => $count_cart], 200);
     }
 
     public function destroy($id)

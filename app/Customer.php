@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Customer extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -27,4 +27,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function verifiedData()
+    {
+        if($this->attributes['surnames'] === null ||
+        $this->attributes['document_number'] === null)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public function orders()
+    {
+      return $this->hasMany(Order::class);
+
+    }
 }

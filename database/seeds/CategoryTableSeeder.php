@@ -12,28 +12,28 @@ class CategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        $category = Category::create([
+        Category::create([
             'name' => 'Teclados'
         ]);
-        $category = Category::create([
+        Category::create([
             'name' => 'Memorias ram'
         ]);
-        $category = Category::create([
+        Category::create([
             'name' => 'Monitores'
         ]);
-        $category = Category::create([
+        Category::create([
             'name' => 'Mouse'
         ]);
-        $category = Category::create([
+        Category::create([
             'name' => 'Accesorios para Laptop'
         ]);
-        $category = Category::create([
+        Category::create([
             'name' => 'Laptops'
         ]);
-        $category = Category::create([
+        Category::create([
             'name' => 'Discos duros'
         ]);
-        $category = Category::create([
+        Category::create([
             'name' => 'Procesadores'
         ]);
     }
