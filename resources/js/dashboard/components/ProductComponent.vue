@@ -19,7 +19,7 @@
                     <md-icon>monetization_on</md-icon>
                     <label>Precio</label>
                     <span class="md-prefix">S/</span>
-                    <md-input type="number" :disabled="sending" v-model="form.price" data-vv-as="precio" v-validate="'required|min_value:1|max_value:99999999.99'" data-vv-name="price" required></md-input>
+                    <md-input type="number" :disabled="sending" v-model="form.price" data-vv-as="precio" v-validate="'required|min_value:3|max_value:99999999.99'" data-vv-name="price" required></md-input>
                     <span class="md-error">{{ errors.first('price') }}</span>
                 </md-field>
             </div>

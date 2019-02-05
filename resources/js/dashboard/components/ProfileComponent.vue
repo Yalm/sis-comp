@@ -3,7 +3,7 @@
         <md-card class="col-lg-4 col-md-5">
             <md-card-content>
                 <div class="avatar-user row d-flex justify-content-center">
-                    <div class="col-md-5 col-8 pr-0 pl-0"><img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt="user" class="img-fluid rounded-circle"></div>
+                    <div class="col-md-5 col-8 pr-0 pl-0"><img src="/img/default-avatar.png" alt="user" class="img-fluid rounded-circle"></div>
                 </div>
                 <h4 class="text-center pt-4">{{user.name}}</h4>
                 <md-list>

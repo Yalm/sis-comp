@@ -4,7 +4,7 @@
             <ul>
                 <li class="user-profile mb-2">
                     <a data-toggle="collapse" href="#user_profile" class="collapsed has-arrow" aria-expanded="false">
-                        <img  src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt="user">
+                        <img  src="/img/default-avatar.png" alt="user">
                         <span class="hide-menu text-capitalize">{{name}} </span>
                     </a>
                     <ul aria-expanded="true" class="collapse" id="user_profile" data-parent="#sidebar">

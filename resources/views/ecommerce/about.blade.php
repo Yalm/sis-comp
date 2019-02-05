@@ -4,7 +4,7 @@
 <div class="container pb-5 pt-5">
     <div class="row pb-5">
         <div class="col-md-6">
-            <img class="img-fluid" src="http://www.kunn.es/wp-content/uploads/2014/07/image1.jpg" alt="img_sis">
+            <img class="img-fluid" src="{{ url('img/about.jpg') }}" alt="img_sis">
         </div>
         <div class="col-md-6">
             <h1 class="text-center">Sis & Comp </h1>

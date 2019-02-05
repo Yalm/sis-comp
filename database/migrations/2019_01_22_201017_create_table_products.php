@@ -17,10 +17,10 @@ class CreateTableProducts extends Migration
             $table->increments('id');
             $table->string('name',300);
             $table->decimal('price',8,2);
-            $table->string('cover',400);
+            $table->string('cover',100);
             $table->smallInteger('stock');
             $table->text('description')->nullable();
-            $table->string('url',300)->unique();
+            $table->string('url',191)->unique();
             $table->string('short_description',400)->nullable();
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');

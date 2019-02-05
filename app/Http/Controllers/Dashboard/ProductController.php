@@ -49,7 +49,7 @@ class ProductController extends Controller
             'short_description' => $request->short_description,
             'price' => $request->price,
             'stock' => $request->stock,
-            'url' => str_slug($request->name),
+            'url' => substr(str_slug($request->name),0,191),
             'category_id' => $request->category_id
         ]);
         return response()->json($product);
@@ -99,7 +99,7 @@ class ProductController extends Controller
 		$product->description = $request->description;
 		$product->short_description =$request->short_description;
 		$product->price =$request->price;
-        $product->url = str_slug($request->name);
+        $product->url = substr(str_slug($request->name),0,191);
         $product->category_id =$request->category_id;
         $product->save();
         return response()->json($product);
