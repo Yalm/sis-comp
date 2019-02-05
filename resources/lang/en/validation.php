@@ -172,5 +172,6 @@ return [
         'time'                  => 'hora',
         'subject'               => 'asunto',
         'message'               => 'mensaje',
+        'cover'               => 'imagen del producto',
     ],
 ];

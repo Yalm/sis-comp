@@ -15,7 +15,7 @@ class Product extends Model
 
     public function scopePrice($query, $min_price,$max_price)
 	{
-		if($min_price && $max_price)
+		if($min_price && $max_price && $min_price != 'undefined')
 			return $query->where('price','>=',$min_price)
 						->where('price','<=',$max_price);
     }
@@ -27,7 +27,8 @@ class Product extends Model
     }
     public function scopeCategorySearch($query, $id)
 	{
-		if($id)
-			return $query->where('category_id',$id);
+		if($id != 'false' && $id != 'null' && $id){
+            return $query->where('category_id',$id);
+        }
 	}
 }

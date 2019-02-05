@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\CustomerResetPasswordNotification;
+use App\Notifications\CustomerVerifyEmailNotification;
+use App\Notifications\CustomerOrderNotification;
 
 class Customer extends Authenticatable implements MustVerifyEmail
 {
@@ -41,6 +44,20 @@ class Customer extends Authenticatable implements MustVerifyEmail
     public function orders()
     {
       return $this->hasMany(Order::class);
+    }
 
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new CustomerResetPasswordNotification($token));
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new CustomerVerifyEmailNotification());
+    }
+
+    public function sendOrderNotification($order)
+    {
+        $this->notify(new CustomerOrderNotification($order));
     }
 }

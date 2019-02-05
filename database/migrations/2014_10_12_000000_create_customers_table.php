@@ -21,6 +21,7 @@ class CreateCustomersTable extends Migration
             $table->string('password');
             $table->string('surnames')->nullable();
             $table->string('phone',30)->nullable();
+            $table->boolean('actived')->default(true);
 
             $table->integer('document_id')->nullable()->unsigned();
             $table->foreign('document_id')->references('id')->on('documents');

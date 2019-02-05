@@ -1,4 +1,6 @@
 {
+    "/js/dashboard.js": "/js/dashboard.js",
     "/js/ecommerce.js": "/js/ecommerce.js",
+    "/css/dashboard.css": "/css/dashboard.css",
     "/css/ecommerce.css": "/css/ecommerce.css"
 }

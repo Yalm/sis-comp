@@ -24,7 +24,7 @@
         <header>
             <nav class="navbar container header-top">
                 <a class="navbar-brand header_title flex-grow-1" href="{{ url('/') }}">SIS & COMP</a>
-                <form action="{{ route('shop') }}" method="get" class="search-ui p-2 d-flex align-items-center">
+                <form action="{{ url('shop') }}" method="get" class="search-ui p-2 d-flex align-items-center">
                     <input type="text" aria-label="search products" name="search" placeholder="Buscar..." class="search-input"
                         autocomplete="off">
                     <button type="submit" aria-label="search products">
@@ -62,7 +62,7 @@
                         <a class="nav-link" href="{{ url('/about') }}">Nosotros</a>
                     </li>
                     <li class="item-page">
-                        <a class="nav-link" href="{{ url('/shop') }}">Tienda</a>
+                        <a class="nav-link" href="{{ url('/shop?page=1') }}">Tienda</a>
                     </li>
                     <li class="item-page">
                         <a class="nav-link" href="{{ url('/contact') }}">Contáctanos</a>
@@ -98,7 +98,7 @@
                     </div>
                     <div class="col-md-4">
                         <h2 class="footer-title-items"> DETALLES DE CONTACTO</h2>
-                        <p class="d-flex align-items-center item-link"><i class="material-icons">location_on</i><span class="ml-2">JR.Loreto #594 - Huancayo</span></p>
+                        <p class="d-flex align-items-center item-link"><i class="material-icons">location_on</i><span class="ml-2">Jr.Loreto #594 - Huancayo</span></p>
                         <p class="d-flex align-items-center item-link"><i class="material-icons">phone</i><span class="ml-2">(064) 782433</span></p>
                         <p class="d-flex align-items-center item-link"><i class="material-icons">email</i><span class="ml-2">soporte@tiendassiscomp.com</span></p>
                     </div>

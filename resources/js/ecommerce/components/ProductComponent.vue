@@ -1,7 +1,7 @@
 <template>
 <div class="container-fluid">
     <div class="row product-view">
-        <div class="product-thumbnail" v-bind:class="[list ? 'col-md-4':'col-12']">
+        <div class="product-thumbnail" v-bind:class="[list ? 'col-md-4':'col-12',{ sold_out_product: product.stock < 1}]">
             <span class="sold_out">Agotado</span>
             <div class="sold_out-back"></div>
             <a v-bind:href="`/p/${product.url}`"><img class="img-fluid" :src="product.cover" v-bind:alt="product.name"></a>
@@ -17,7 +17,7 @@
             </h3>
             <p v-if="list" class="product-description">{{ product.short_description }}</p>
             <div class="product-price-and-shipping">
-                <span class="price">S/{{ product.price }}</span>
+                <span class="price">S/ {{ product.price }}</span>
             </div>
             <button v-if="list" type="submit" v-on:click="addCartProduct()" aria-label="add product" class="btn-siscom">Agregar al carrito</button>
             <button type="button" v-on:click="addCartProduct()" aria-label="add product" class="add-product"><i class="material-icons">shopping_cart</i></button>

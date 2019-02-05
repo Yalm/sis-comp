@@ -1,7 +1,7 @@
 <template>
 <div class="container" v-if="mutableList">
     <div class="row cart" v-if="mutableList.length >= 1">
-        <div class="col-md-8 col-12" >
+        <div class="col-md-7 col-12" >
             <div class="card cart-items" v-bind:class="{ loading:progress }">
                 <div class="card-header text-uppercase card-header-black ">
                     Carrito de compras
@@ -33,7 +33,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4" >
+        <div class="col-md-5" >
             <div class="card checkout-review-order">
                 <table class="checkout-review-table">
                     <tfoot>
@@ -65,7 +65,7 @@
     <div class="cart_empty text-center" v-if="mutableList.length < 1" >
         <i class="material-icons">shopping_cart</i>
         <p>Tu carrito está vacío.</p>
-        <a class="cart_empty-link" routerLink="/shop">Volver a la tienda</a>
+        <a class="cart_empty-link" href="/shop">Volver a la tienda</a>
     </div>
 </div>
 </template>

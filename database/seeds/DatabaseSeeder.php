@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
             CategoryTableSeeder::class,
             ProductTableSeeder::class,
             DocumentTableSeeder::class,
-            StateTableSeeder::class
+            StateTableSeeder::class,
+            UserTableSeeder::class
         ]);
     }
 }

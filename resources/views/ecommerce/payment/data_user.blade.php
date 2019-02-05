@@ -77,7 +77,7 @@
         </div>
         <input name="_method" type="hidden" value="PUT">
         <div class="col-12 pb-5">
-            <button type="submit" class="btn-siscom">Iniciar Sesión</button>
+            <button type="submit" :disabled="errors.any()" class="btn-siscom">Iniciar Sesión</button>
         </div>
     </form>
 </div>

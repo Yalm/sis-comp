@@ -7,62 +7,44 @@
             @csrf
             <h2>Crea una cuenta</h2>
             <h4 class="register-text">¿Ya tienes una cuenta? <a href="{{ route('login') }}">Inicia sesión en su lugar!</a></h4>
-            <div class="form-group from-siscom">
-                <input id="name" type="text" class="input-siscom form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                    name="name" value="{{ old('name') }}" placeholder="Nombre" required autofocus>
+
+            <md-field class="{{ $errors->has('name') ? 'md-invalid' : '' }}">
+                <md-icon>face</md-icon>
+                <label>Nombre</label>
+                <md-input type='text' name="name" value="{{ old('name') }}" required autofocus></md-input>
                 @if ($errors->has('name'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('name') }}</strong>
-                </span>
-                @else
-                <span class="focus-border">
-                    <i></i>
-                </span>
+                    <span class="md-error">{{ $errors->first('name') }}</span>
                 @endif
-            </div>
+            </md-field>
 
-            <div class="form-group from-siscom">
-                <input id="email" type="email" class="input-siscom form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                    name="email" value="{{ old('email') }}" placeholder="Dirección de correo electrónico" required>
+            <md-field class="{{ $errors->has('email') ? 'md-invalid' : '' }}">
+                <md-icon>email</md-icon>
+                <label>Dirección de correo electrónico</label>
+                <md-input type='email' name="email" value="{{ old('email') }}" required></md-input>
                 @if ($errors->has('email'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('email') }}</strong>
-                </span>
-                @else
-                <span class="focus-border">
-                    <i></i>
-                </span>
+                    <span class="md-error">{{ $errors->first('email') }}</span>
                 @endif
-            </div>
+            </md-field>
 
-            <div class="form-group from-siscom">
-                <input id="password" type="password" class="input-siscom form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                    name="password" placeholder="Contraseña" required>
-                @if ($errors->has('password'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('password') }}</strong>
-                </span>
-                @else
-                <span class="focus-border">
-                    <i></i>
-                </span>
+            <md-field class="{{ $errors->has('password') ? 'md-invalid' : '' }}">
+                <md-icon>lock</md-icon>
+                <label>Contraseña </label>
+                <md-input type="password" name="password" required></md-input>
+                @if ($errors->has('email'))
+                    <span class="md-error">{{ $errors->first('email') }}</span>
                 @endif
-            </div>
+            </md-field>
 
-            <div class="form-group from-siscom">
-                <input id="password-confirm" placeholder="Confirmar Contraseña" type="password" class="input-siscom form-control"
-                    name="password_confirmation" required>
-                @if (!$errors->has('password'))
-                <span class="focus-border">
-                    <i></i>
-                </span>
-                @endif
-            </div>
+            <md-field>
+                <md-icon>lock</md-icon>
+                <label>Confirmar Contraseña </label>
+                <md-input type="password" name="password_confirmation" required></md-input>
+            </md-field>
             <div class="custom-control custom-checkbox check-p">
                 <input type="checkbox" class="custom-control-input" id="terms" name="terms" v-validate="'required'">
                 <label class="custom-control-label" for="terms">He leído y estoy de acuerdo con los <a href="/terms_and_conditions" class="hover_ch">términos y condiciones</a> de la web</label>
             </div>
-            <button type="submit" class="btn-siscom d-block">Registrarse</button>
+            <md-button class="md-raised md-primary" type="submit">Registrarse</md-button>
         </form>
     </div>
 </div>

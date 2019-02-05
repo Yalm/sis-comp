@@ -1,0 +1,38 @@
+.topbar
+    position: fixed
+    width: 100%
+    z-index: 4
+    top: 0
+    background-color: #ffffff
+    .top-navbar
+        min-height: 70px
+        padding: 0px
+    .navbar-nav
+        padding: 0 10px
+    .navbar-header
+        width: 240px
+        -ms-flex-negative: 0
+        flex-shrink: 0
+        line-height: 55px
+        padding-left: 10px
+        &.active
+            width: 70px
+            .title-logo
+                display: none
+    .title-logo
+        font-size: 20px
+    .navbar-logo img
+        height: 40px
+@media (max-width: 767px)
+    .navbar-header
+        width: 180px !important
+        .title-logo
+            display: inherit !important
+
+@media only screen and (min-width: 768px)
+    .content_wrapper
+        padding: 100px 10px 60px 25px
+        min-height: 100%
+        &.active
+            margin-left: 70px
+            padding-left: 15px

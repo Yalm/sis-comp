@@ -17,7 +17,13 @@ a
     &:focus , &:active ,&:hover
         outline: none
         color: #777
-        text-decoration: none
+        background-color: none !important
+        text-decoration: none !important
+
+.noUi-connect
+    background: $primary
+.noUi-handle:focus
+    outline: none
 
 .btn-siscom
     border: 2px solid #313537
@@ -143,7 +149,7 @@ a
         display: inline-block
         outline: none
         width: 100%
-        height: 56px
+        height: 50px
     .qty-error
         display: block
     .input-group-btn-vertical
@@ -163,3 +169,6 @@ a
     .full-width-height
         width: 100%
         height: 56px
+
+.w-100
+    width: 100%

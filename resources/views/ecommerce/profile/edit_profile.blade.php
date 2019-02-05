@@ -23,6 +23,7 @@
                 </span>
             </div>
         </div>
+
         <div class="col-md-6">
             <div class="form-group from-siscom">
                 <input type="text" class="input-siscom form-control" v-validate="'required|min:3|alpha_spaces'" value="{{$customer->surnames}}"

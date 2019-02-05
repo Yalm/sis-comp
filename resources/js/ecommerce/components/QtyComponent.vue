@@ -11,7 +11,7 @@
             </span>
         </div>
         <div class="col-7">
-            <button :disabled="progress || qty <= 0" class="btn-siscom height-btn" @click="addCartProduct()">Agregar al carrito</button>
+            <button :disabled="progress || qty <= 0" class="btn-siscom height-btn" @click="addCartProduct()">{{ product.stock > 1 ? 'Agregar al carrito':'Agotado'}}</button>
         </div>
     </div>
 </div>

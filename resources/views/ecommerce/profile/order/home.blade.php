@@ -7,7 +7,7 @@
     @else
     <div class="table-responsive">
         <table class="table table-hover">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th scope="col">Pedido #</th>
                     <th scope="col">Fecha de Pedido</th>
@@ -24,9 +24,9 @@
                     <td class="text_comer_h {{ $order->getColorState() }}">{{ $order->state->name }}</td>
                     <td>S/.{{ $order->amount }}</td>
                     <td>
-                        <a href="{{ url('profile/orders',$order->getIdFormat() ) }}" class="fs-20 hov-cl1 cl5 p-r-5">
-                            <i class="material-icons">remove_red_eye</i>
-                        </a>
+                        <md-button class="md-icon-button" href="{{ url('profile/orders',$order->getIdFormat() ) }}">
+                            <md-icon>remove_red_eye</md-icon>
+                        </md-button>
                     </td>
                 </tr>
                 @endforeach
@@ -34,9 +34,9 @@
         </table>
     </div>
     @endif
-    <div class="flex-c-m flex-w w-full p-t-45">
+    <div class="col-12">
         @if(count($orders))
-            <div class="mt-2 mx-auto">
+            <div class="d-flex justify-content-center">
                 {{ $orders->links('pagination::bootstrap-4') }}
             </div>
         @endif

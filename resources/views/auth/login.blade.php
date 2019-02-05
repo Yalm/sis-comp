@@ -8,41 +8,29 @@
             <h3>NUEVOS CLIENTES</h3>
             <p>Al crear una cuenta en nuestra tienda, podrá moverse a través del proceso de pago más rápido, almacenar
                 múltiples direcciones de envío, ver y rastrear sus pedidos en su cuenta y más.</p>
-            <a href="{{ route('register') }}" class="btn-siscom">Crea una cuenta</a>
+            <md-button href="{{ route('register') }}" class="md-raised md-primary ml-0" type="submit">Crea una cuenta</md-button>
         </div>
         <form class="col-md-7 login-cont col-11" method="POST" action="{{ route('login') }}">
             @csrf
             <h3>INGRESE A SU CUENTA</h3>
-            <div class="form-group from-siscom">
-                <input type="email" class="input-siscom form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                    name="email" value="{{ old('email') }}" aria-label="Dirección de correo electrónico" required placeholder="Dirección de correo electrónico"
-                    autofocus>
-
+            <md-field class="{{ $errors->has('email') ? 'md-invalid' : '' }}">
+                <md-icon>email</md-icon>
+                <label>Dirección de correo electrónico</label>
+                <md-input type='email' name="email" value="{{ old('email') }}" required autofocus></md-input>
                 @if ($errors->has('email'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('email') }}</strong>
-                </span>
-                @else
-                    <span class="focus-border">
-                        <i></i>
-                    </span>
+                    <span class="md-error">{{ $errors->first('email') }}</span>
                 @endif
-            </div>
+            </md-field>
 
 
-            <div class="form-group from-siscom">
-                <input type="password" class="input-siscom form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                    name="password" placeholder="Contraseña" aria-label="Contraseña" required>
-                @if ($errors->has('password'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('password') }}</strong>
-                </span>
-                @else
-                <span class="focus-border">
-                    <i></i>
-                </span>
+            <md-field class="{{ $errors->has('password') ? 'md-invalid' : '' }}">
+                <md-icon>lock</md-icon>
+                <label>Contraseña </label>
+                <md-input type="password" name="password" required></md-input>
+                @if ($errors->has('email'))
+                    <span class="md-error">{{ $errors->first('email') }}</span>
                 @endif
-            </div>
+            </md-field>
 
             <div class="content-buttons d-flex align-items-center">
                 @if (Route::has('password.request'))
@@ -67,7 +55,7 @@
                         <span>Iniciar sesión con google</span>
                     </span>
                 </button>-->
-                <button type="submit" class="btn-siscom">Iniciar Sesión</button>
+                <md-button class="md-raised md-primary" type="submit">Iniciar Sesión</md-button>
             </div>
         </form>
     </div>

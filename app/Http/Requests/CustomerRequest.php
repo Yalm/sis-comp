@@ -36,7 +36,8 @@ class CustomerRequest extends FormRequest
                     'phone' => 'nullable|numeric|digits_between:09,15',
                     'name' => 'max:191|required',
                     'surnames' => 'max:191|required',
-                    'avatar' => 'image',
+                    'document_id' => 'nullable|numeric',
+                    'document_number' => 'nullable|string',
                     'email' => 'required|email|max:191|unique:customers,email',
                     'password' => 'required|string|min:6|confirmed',
                 ];

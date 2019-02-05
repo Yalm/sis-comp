@@ -1,5 +1,5 @@
 @extends('layouts.ecommerce')
 
 @section('content')
-<shop-component :categories="{{$providerCategories}}"  {{ $categorySearch ? (":categoryse=$categorySearch") :'' }}  {{ $search ? (":search='$search'"):'' }} ></shop-component>
+<shop-component :maxp="{{$max}}" @count="count = $event" :categories="{{$providerCategories}}"></shop-component>
 @endsection

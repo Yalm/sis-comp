@@ -14,11 +14,13 @@ class PaymentController extends Controller
 	{
 		$products = \Cart::getContent();
         $total_cart = \Cart::getTotal();
+        $culqi_pk_public = env('CULQUI_PUBLIC_KEY');
 
 		return view('ecommerce.payment.checkout',
 		[
 			'products' => $products,
-			'total_cart' => $total_cart,
+            'total_cart' => $total_cart,
+            'culqi_pk_public' => $culqi_pk_public
 		]);
     }
 
@@ -26,25 +28,31 @@ class PaymentController extends Controller
     {
         $total = \Cart::getTotal();
 
-        $SECRET_KEY = "sk_test_Km1vANGLrdAE8jKm";
+        $SECRET_KEY = env('CULQUI_SECRET_KEY');
 
         $culqi = new Culqi(array('api_key' => $SECRET_KEY));
 
-        $payment = $culqi->Charges->create(
-            array(
-                "amount" => $total * 100,
-                "capture" => true,
-                "currency_code" => "PEN",
-                "description" => "Ventas En Línea Sis Comp",
-                "email" => Auth()->user()->email,
-                "installments" => 0,
-                "source_id" => $request->token
-            )
-        );
-
+        try{
+            $payment = $culqi->Charges->create(
+                array(
+                    "amount" => $total * 100,
+                    "capture" => true,
+                    "currency_code" => "PEN",
+                    "description" => "Ventas En Línea Sis Comp",
+                    "email" => Auth()->user()->email,
+                    "installments" => 0,
+                    "source_id" => $request->token
+                )
+            );
+        }
+        catch(\Exception $e){
+            $message = json_decode($e->getMessage());
+            return response()->json($message,422);
+        }
         $order = Order::create([
             'customer_id' => Auth()->user()->id,
             'amount' => $total,
+            'plus_info' => $request->plus_info,
             'reference_code' => $payment->reference_code,
             'state_id' => 2
         ]);
@@ -58,6 +66,7 @@ class PaymentController extends Controller
             $order->products()->attach($product->id,['quantity' => $product->quantity]);
         }
         \Cart::clear();
+        Auth()->user()->sendOrderNotification($order);
         return response()->json(['message' => 'success','data' => $order],200);
     }
 }

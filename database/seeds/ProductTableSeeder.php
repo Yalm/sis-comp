@@ -12,6 +12,8 @@ class ProductTableSeeder extends Seeder
      */
     public function run()
     {
+        //factory(App\Product::class,30)->create();
+        /*
         Product::create([
             'cover' => 'https://http2.mlstatic.com/memoria-kingston-micro-sd-32gb-clase-10-full-hd-original-D_NQ_NP_22776-MLA20235319073_012015-F.jpg',
             'description' => 'La tarjeta SD Canvas Select ™ de Kingston está diseñada para ser confiable, por lo que es ideal para filmar en HD y tomar fotos de alta resolución. <br> Puedes estar seguro que sus recuerdos estarán seguros al documentar las aventuras de la vida en su apuntar y disparar la cámara.  Brinda mucho espacio para capturar un viaje completo.',
@@ -116,6 +118,6 @@ class ProductTableSeeder extends Seeder
             'stock' => 5,
             'url' => 'microsoft-wireless-mbl-mouse-1850-pink-rosado-u7z-00021-jqlt60',
             'category_id' => 4
-        ]);
+        ]);*/
     }
 }

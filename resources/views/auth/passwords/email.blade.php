@@ -15,24 +15,17 @@
             <form method="POST" action="{{ route('password.email') }}">
                 @csrf
 
-                <div class="form-group from-siscom">
-                    <input id="email" type="email" class="input-siscom form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                        name="email" value="{{ old('email') }}" aria-label="Dirección de correo electrónico" required placeholder="Dirección de correo electrónico">
+                <md-field class="{{ $errors->has('email') ? 'md-invalid' : '' }}">
+                    <md-icon>email</md-icon>
+                    <label>Dirección de correo electrónico</label>
+                    <md-input type='email' name="email" value="{{ old('email') }}" required autofocus></md-input>
                     @if ($errors->has('email'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                    @else
-                    <span class="focus-border">
-                        <i></i>
-                    </span>
+                        <span class="md-error">{{ $errors->first('email') }}</span>
                     @endif
-                </div>
+                 </md-field>
 
                 <div class="form-group">
-                    <button type="submit" class="btn-siscom">
-                        Enviar enlace de restablecimiento
-                    </button>
+                    <md-button class="md-raised md-primary" type="submit">Enviar enlace de restablecimiento</md-button>
                 </div>
             </form>
             <a class="d-flex align-items-center back-login" href="{{ route('login') }}"><i class="material-icons">navigate_before</i> <span>Atrás para iniciar sesión</span></a>

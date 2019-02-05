@@ -1,0 +1,163 @@
+$color_sidebar: #000000
+$background_sidebar: #ffffff
+
+.link-logout
+    cursor: pointer
+
+.left-sidebar
+    position: fixed
+    width: 240px
+    height: 100%
+    top: 0px
+    z-index: 3
+    padding-top: 70px
+    background-color: $background_sidebar
+    a
+        &:hover
+            text-decoration: none !important
+    .sidebar-nav
+        padding: 15px 0 0 0px
+        .user-profile
+            & > a img
+                width: 30px
+                border-radius: 100%
+                margin-right: 10px
+            & > ul
+                padding-left: 40px
+        & > ul > li > a
+            color: #000000
+            font-weight: 500
+            &[aria-expanded="true"]
+                color: $primary
+                font-weight: 500
+                i
+                    color: $primary
+            & i
+                width: 31px
+                font-size: 24px
+                display: inline-block
+                vertical-align: middle
+                color: $color_sidebar
+
+        ul
+            margin: 0
+            padding: 0
+            li
+                list-style: none
+                &.nav-small-cap
+                    font-size: 12px
+                    margin-bottom: 0px
+                    padding: 14px 14px 14px 20px
+                    color: $color_sidebar
+                    font-weight: 500
+                &.nav-devider
+                    height: 0px
+                    background: transparent
+                    display: block
+                    margin: 15px 0
+                ul
+                    padding-left: 28px
+                    li a
+                        padding: 7px 35px 7px 15px
+                        color: $color_sidebar
+                        &[aria-expanded="true"]
+                            color: $primary
+                            font-weight: 500
+                        &.active
+                            font-weight: 500
+                            color: $primary
+                &.active
+                    font-weight: 500
+                    color: $color_sidebar
+                a,.link-logout
+                    padding: 8px 35px 8px 15px
+                    display: block
+                    font-size: 14px
+                    font-weight: 400
+                    &.collapsed
+                        color: $color_sidebar
+                    &:hover
+                        color: $primary
+                        & i
+                            color: $primary
+        .has-arrow
+            position: relative
+            &::after
+                position: absolute
+                content: ''
+                width: 7px
+                height: 7px
+                border-width: 1px 0 0 1px
+                border-style: solid
+                border-color: $color_sidebar
+                right: 1em
+                transform: rotate(-135deg) translate(0, -50%)
+                transform-origin: top
+                top: 45%
+                transition: all .3s ease-out
+            &.collapsed::after
+                transform: rotate(135deg) translate(0, -50%)
+                top: 47%
+@media only screen and  (min-width: 767px)
+    .left-sidebar.active
+        width: 70px
+        .hide-menu
+            display: none
+        .nav-small-cap
+            display: none
+        .user-profile
+            a
+                padding: 12px 20px !important
+        li
+            position: relative !important
+            ul[data-parent="#sidebar"]
+                position: absolute
+                left: 70px
+                top: 46px
+                width: 220px
+                padding-bottom: 10px
+                z-index: 1001
+                background: #edf0f5
+                display: none
+                padding-left: 1px
+            a:first-child
+                padding: 12px 24px
+                width: 100%
+                &::after
+                    display: none
+            &:hover
+                ul[data-parent="#sidebar"]
+                    background: #edf0f5
+                    height: auto !important
+                    overflow: auto
+                    display: block
+                    overflow: hidden
+                    li
+                        ul
+                            padding-left: 15px
+                        a
+                            width: 100%
+                            padding: 7px 35px 7px 15px !important
+                            &::after
+                                display: block
+                a
+                    width: 290px
+                    background: #edf0f5
+                    & .hide-menu
+                        display: inline
+
+
+@media only screen and (max-width: 767px)
+    .left-sidebar.active
+        left: -240px
+
+@keyframes ripple
+    0%
+        transform: scale(0, 0)
+        opacity: 1
+    20%
+        transform: scale(25, 25)
+        opacity: 1
+    100%
+        opacity: 0
+        transform: scale(40, 40)
