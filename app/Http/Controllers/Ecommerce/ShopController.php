@@ -37,9 +37,9 @@ class ShopController extends Controller
         $data = Product::latest()->name($request->search)
         ->categorySearch($request->category)
         ->price($request->min_price,$request->max_price)->paginate(9);
-        /*$data->each(function($data){
+        $data->each(function($data){
             $data->cover = Storage::disk('gcs')->url($data->cover);
-        });*/
+        });
         return response()->json($data,200);
     }
 
