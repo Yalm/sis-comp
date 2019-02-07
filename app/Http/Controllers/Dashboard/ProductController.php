@@ -16,10 +16,16 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
-        return view('dashboard.product.index',['products' => $products]);
+        if($request->ajax() && $request->json)
+        {
+            $products = Product::latest()->search($request->search)->paginate(7);
+            return response()->json($products,200);
+        }else{
+            $products = Product::latest()->search($request->search)->paginate(7)->toJson();
+            return view('dashboard.product.index',['products' => $products]);
+        }
     }
 
     /**
@@ -114,6 +120,10 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
+        if($product->orders()->count() > 0)
+        {
+            return response()->json(['message' => 'Su producto esta relacionada, no se puede eliminar'],409);
+        }
         Storage::disk('gcs')->delete($product->cover);
         $product->delete();
 		return response()->json($product);

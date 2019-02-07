@@ -42,7 +42,7 @@ class CategoryController extends Controller
 
         if($cateogry->products()->count() > 0)
         {
-            return response()->json(['message' => 'su categoría esta relacionada'],409);
+            return response()->json(['message' => 'Su categoría esta relacionada, no se puede eliminar.'],409);
         }
 
         $cateogry->delete();

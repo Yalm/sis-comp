@@ -21,6 +21,11 @@ class Product extends Model
 						->where('price','<=',$max_price);
     }
 
+    public function orders()
+    {
+      	return $this->belongsToMany(Order::class,'order_details');
+    }
+
     public function scopeName($query, $name)
 	{
 		if($name)
@@ -31,6 +36,14 @@ class Product extends Model
 		if($id != 'false' && $id != 'null' && $id){
             return $query->where('category_id',$id);
         }
+    }
+
+    public function scopeSearch($query,$s)
+	{
+        if($s != 'false' && $s != 'null' && $s)
+            return $query->where('name','LIKE',"%$s%")
+                        ->orWhere('price','LIKE',"%$s%")
+                        ->orWhere('url','LIKE',"%$s%");
     }
 
     public static function top7Product($f1,$f2)

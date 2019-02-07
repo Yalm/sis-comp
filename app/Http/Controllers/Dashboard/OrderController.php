@@ -9,16 +9,21 @@ use App\State;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::latest()->get();
-        $orders->each(function($order){
-            $order->customer;
-            $order->state;
-            $order->payment;
-            $order->date = $order->created_at->format('F d \,\ Y ');
-        });
-        return view('dashboard.order.index',['orders' => $orders]);
+        if($request->ajax() && $request->json)
+        {
+            $orders = Order::latest()->search($request->search)->paginate(7);
+            $orders->each(function($order){
+                $order->customer;
+                $order->state;
+                $order->payment;
+                $order->date = $order->created_at->format('F d \,\ Y ');
+            });
+            return response()->json($orders,200);
+        }else{
+            return view('dashboard.order.index');
+        }
     }
 
     public function edit($id)

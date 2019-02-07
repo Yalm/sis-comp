@@ -45,7 +45,7 @@
                 <md-field v-bind:class="{ 'md-invalid': errors.first('surnames') }">
                     <md-icon>face</md-icon>
                     <label>Apellidos</label>
-                    <md-input v-model="user.surnames" required maxlength="191" :disabled="sending" data-vv-as="apellidos" data-vv-name="surnames" v-validate="'min:5|max:191'"></md-input>
+                    <md-input v-model="user.surnames" required maxlength="191" :disabled="sending" data-vv-as="apellidos" data-vv-name="surnames" v-validate="'required|min:5|max:191'"></md-input>
                     <span class="md-error">{{ errors.first('surnames') }}</span>
                 </md-field>
             </div>

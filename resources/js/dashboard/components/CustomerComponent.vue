@@ -223,9 +223,16 @@ export default {
                             'success')
                             const index = this.searched.findIndex((x => x.id == item.id));
                             this.searched.splice(index,1);
+                        }).catch(err => {
+                            this.$swal.hideLoading();
+                            this.$swal.fire(
+                                'Opps...',
+                                'Algo salio mal',
+                                'error'
+                            );
                         });
                     }
-            })
+                });
         },closeDialog(){
             this.customer = null;
         }

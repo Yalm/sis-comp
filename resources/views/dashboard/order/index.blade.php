@@ -10,9 +10,7 @@
                 <li class="breadcrumb-item"><a class="text-dark">Listado de pedidos</a></li>
             </ul>
         </div>
-        <div class="col-12 pl-0 pr-0">
-            <order-table-component :data="{{$orders}}" name="pedido" link="orders"></order-table-component>
-        </div>
+        <order-table-component name="pedido" link="orders"></order-table-component>
     </div>
 </div>
 @endsection

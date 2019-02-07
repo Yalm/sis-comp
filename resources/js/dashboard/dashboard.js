@@ -44,7 +44,7 @@ Vue.component('user-component', require('./components/UserComponent.vue').defaul
 Vue.component('order-table-component', require('./components/OrderTableComponent.vue').default);
 Vue.component('order-component', require('./components/OrderComponent.vue').default);
 Vue.component('report-component', require('./components/ReportComponent.vue').default);
-
+Vue.component('pagination-material-component', require('./components/PaginationComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

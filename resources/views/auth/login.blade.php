@@ -13,6 +13,11 @@
         <form class="col-md-7 login-cont col-11" method="POST" action="{{ route('login') }}">
             @csrf
             <h3>INGRESE A SU CUENTA</h3>
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
             <md-field class="{{ $errors->has('email') ? 'md-invalid' : '' }}">
                 <md-icon>email</md-icon>
                 <label>Dirección de correo electrónico</label>

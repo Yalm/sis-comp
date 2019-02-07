@@ -65,16 +65,20 @@ class Order extends Model
 
     public function scopeSearch($query,$s)
 	{
-        if($s)
-            return $query->where('name','LIKE',"%$s%")
-                        ->orWhere('id','LIKE',"%$s%")
+        if($s != 'false' && $s != 'null' && $s)
+            return $query->where('id','LIKE',"%$s%")
                         ->orWhere('created_at','LIKE',"%$s%")
-                        ->orWhereHas('customers', function($q)
+                        ->orWhereHas('customer', function($q) use($s)
                         {
                             $q->where('name', 'like',"%$s%");
-                        })->orWhereHas('states', function($q)
+                        })
+                        ->orWhereHas('state', function($q) use($s)
                         {
                             $q->where('name', 'like',"%$s%");
+                        })
+                        ->orWhereHas('payment', function($q) use($s)
+                        {
+                            $q->where('amount', 'like',"%$s%");
                         });
     }
 

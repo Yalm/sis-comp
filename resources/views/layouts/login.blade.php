@@ -17,7 +17,7 @@
 </head>
     <body>
         <div id="dashboard">
-            <div>
+            <div class="content-login">
                 @yield('content')
             </div>
         </div>

@@ -29,7 +29,7 @@ Route::get('/contact','Ecommerce\ShopController@contact')->name('contact');
 Route::post('/contact', 'Ecommerce\ShopController@sendContact');
 Route::get('/terms_and_conditions','Ecommerce\ShopController@terms');
 
-Route::group(['middleware'=>['auth:web','verified']], function()
+Route::group(['middleware'=>['auth:web','verified','actived']], function()
 {
     Route::get('/account/complete-profile','Ecommerce\CustomerController@completeProfile');
     Route::put('/account/complete-profile','Ecommerce\CustomerController@completeProfilePayment');
@@ -67,7 +67,7 @@ Route::prefix('admin')->group(function ()
     Route::post('/password/reset','Auth\UserResetPasswordController@reset');
     Route::get('/password/reset/{token}','Auth\UserResetPasswordController@showResetForm')->name('user.password.reset');
 
-    Route::group(['middleware' => 'auth:user'], function ()
+    Route::group(['middleware' => ['auth:user','actived-user']], function ()
     {
         Route::resource('/products','Dashboard\ProductController', ['except' => 'show']);
         Route::apiResource('/categories','Dashboard\CategoryController');
