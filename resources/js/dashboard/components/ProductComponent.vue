@@ -15,7 +15,7 @@
             </md-field>
 
             <div class="col-md-6 pl-0">
-                <md-field md-clearable v-bind:class="{ 'md-invalid': errors.first('price') }">
+                <md-field v-bind:class="{ 'md-invalid': errors.first('price') }">
                     <md-icon>monetization_on</md-icon>
                     <label>Precio</label>
                     <span class="md-prefix">S/</span>
@@ -25,7 +25,7 @@
             </div>
 
             <div class="col-md-6">
-                <md-field md-clearable v-bind:class="{ 'md-invalid': errors.first('stock') }">
+                <md-field v-bind:class="{ 'md-invalid': errors.first('stock') }">
                     <md-icon>poll</md-icon>
                     <label>Stock</label>
                     <md-input type="number" :disabled="sending" v-model="form.stock" v-validate="'required|min_value:1|max_value:32767'" data-vv-name="stock" required></md-input>

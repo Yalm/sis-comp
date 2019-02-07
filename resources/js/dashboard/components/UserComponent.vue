@@ -1,8 +1,8 @@
 <template>
 <div>
     <md-button @click="create()" class="md-raised md-primary mt-3">Añadir nuevo</md-button>
-    <md-card-content>
-        <md-table v-model="searched" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
+    <md-card-content class="pl-0 pr-0 pt-0">
+        <md-table v-model="searched" md-sort="name" md-sort-order="asc" md-fixed-header>
             <md-table-toolbar>
                 <div class="md-toolbar-section-start">
                     <h1 class="md-title text-capitalize">Usuarios</h1>

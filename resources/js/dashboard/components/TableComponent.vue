@@ -1,6 +1,6 @@
 <template>
 <div>
-    <md-table v-model="searched" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
+    <md-table v-model="searched" md-sort="name" md-sort-order="asc" md-fixed-header>
         <md-table-toolbar>
             <div class="md-toolbar-section-start">
                 <h1 class="md-title text-capitalize">{{ name }}s</h1>

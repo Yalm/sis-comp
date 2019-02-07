@@ -75,7 +75,13 @@ Route::prefix('admin')->group(function ()
 		Route::put('/profile/updated/{admin}','Dashboard\UserController@updateProfile');
         Route::put('/changePassword','Dashboard\UserController@changePassword');
         Route::apiResource('/customers','Dashboard\CustomerController');
-        Route::apiResource('/orders','Dashboard\OrderController');
+        Route::resource('/orders','Dashboard\OrderController');
         Route::apiResource('/users','Dashboard\UserController');
+
+        // Report routes
+        Route::get('/reports','Dashboard\ReportController@index');
+        Route::get('/reports/top','Dashboard\ReportController@topProducts');
+        Route::get('/reports/purchases','Dashboard\ReportController@purchases');
+        Route::get('/reports/topCustomer','Dashboard\ReportController@topCustomer');
     });
 });

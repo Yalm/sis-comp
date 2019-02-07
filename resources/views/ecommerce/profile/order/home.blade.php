@@ -20,9 +20,9 @@
                 @foreach($orders as $order)
                 <tr class="text-center">
                     <th scope="row" class="text-uppercase text-truncate" style="max-width: 280px;">#{{ $order->id }}</th>
-                    <td>{{ $order->created_at->format('F d \,\ Y ')  }}</td>
-                    <td class="text_comer_h {{ $order->getColorState() }}">{{ $order->state->name }}</td>
-                    <td>S/.{{ $order->amount }}</td>
+                    <td class="text-capitalize">{{ $order->created_at->format('F d \,\ Y ')  }}</td>
+                    <td class="text-capitalize {{ $order->getColorState() }}">{{ $order->state->name }}</td>
+                    <td>S/ {{ $order->payment->amount }}</td>
                     <td>
                         <md-button class="md-icon-button" href="{{ url('profile/orders',$order->getIdFormat() ) }}">
                             <md-icon>remove_red_eye</md-icon>

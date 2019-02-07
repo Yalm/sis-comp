@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Product extends Model
 {
@@ -30,5 +31,19 @@ class Product extends Model
 		if($id != 'false' && $id != 'null' && $id){
             return $query->where('category_id',$id);
         }
+    }
+
+    public static function top7Product($f1,$f2)
+	{
+		return DB::table('order_details')
+		->join('products', 'order_details.product_id', '=', 'products.id')
+		->join('orders', 'order_details.order_id', '=', 'orders.id')
+		->select('products.id','products.name' ,DB::raw('sum(quantity) as TotalQuantity') )
+		->whereBetween('orders.created_at', [$f1,  $f2])
+		->where('orders.state_id','=','2')
+		->groupBy('products.id','products.name')
+		->orderBy(DB::raw('sum(quantity)'), 'desc')
+		->take(10)
+		->get();
 	}
 }

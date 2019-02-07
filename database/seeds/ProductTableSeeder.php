@@ -12,7 +12,7 @@ class ProductTableSeeder extends Seeder
      */
     public function run()
     {
-        //factory(App\Product::class,30)->create();
+        //factory(App\Product::class,100)->create();
         /*
         Product::create([
             'cover' => 'https://http2.mlstatic.com/memoria-kingston-micro-sd-32gb-clase-10-full-hd-original-D_NQ_NP_22776-MLA20235319073_012015-F.jpg',

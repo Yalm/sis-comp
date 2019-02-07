@@ -1,34 +1,32 @@
 <template>
 <div>
-    <md-card-content>
-        <md-table v-model="searched" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
-            <md-table-toolbar>
-                <div class="md-toolbar-section-start">
-                    <h1 class="md-title text-capitalize">Clientes</h1>
-                </div>
+    <md-table v-model="searched" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
+        <md-table-toolbar>
+            <div class="md-toolbar-section-start">
+                <h1 class="md-title text-capitalize">Clientes</h1>
+            </div>
 
-                <md-field md-clearable class="md-toolbar-section-end">
-                    <md-input placeholder="Buscar por nombre..." aria-label="Buscar por nombre..." v-model="search" @input="searchOnTable" />
-                </md-field>
-            </md-table-toolbar>
+            <md-field md-clearable class="md-toolbar-section-end">
+                <md-input placeholder="Buscar por nombre..." aria-label="Buscar por nombre..." v-model="search" @input="searchOnTable" />
+            </md-field>
+        </md-table-toolbar>
 
-            <md-table-empty-state
-                md-label="No se encontraron clientes"
-                :md-description="`Ningúna cliente encontrado para esta '${search}' consulta. Intente un término de búsqueda diferente o cree un nuevo cliente.`">
-            </md-table-empty-state>
+        <md-table-empty-state
+            md-label="No se encontraron clientes"
+            :md-description="`Ningúna cliente encontrado para esta '${search}' consulta. Intente un término de búsqueda diferente o cree un nuevo cliente.`">
+        </md-table-empty-state>
 
-            <md-table-row slot="md-table-row" slot-scope="{ item }">
-                <md-table-cell md-label="Nombre" md-sort-by="name">{{ item.name }}</md-table-cell>
-                <md-table-cell md-label="Apellidos" md-sort-by="surnames">{{ item.surnames }}</md-table-cell>
-                <md-table-cell md-label="Correo" md-sort-by="email">{{ item.email }}</md-table-cell>
-                <md-table-cell md-label="Compras" md-sort-by="shop" md-numeric>{{ item.shop }}</md-table-cell>
-                <md-table-cell md-label="Acciones" >
-                    <md-button @click="edit(item)" class="md-icon-button"><md-icon>edit</md-icon></md-button>
-                    <md-button class="md-icon-button" @click="deleteItem(item)"><md-icon>delete</md-icon></md-button>
-                </md-table-cell>
-            </md-table-row>
-        </md-table>
-    </md-card-content>
+        <md-table-row slot="md-table-row" slot-scope="{ item }">
+            <md-table-cell md-label="Nombre" md-sort-by="name">{{ item.name }}</md-table-cell>
+            <md-table-cell md-label="Apellidos" md-sort-by="surnames">{{ item.surnames }}</md-table-cell>
+            <md-table-cell md-label="Correo" md-sort-by="email">{{ item.email }}</md-table-cell>
+            <md-table-cell md-label="Compras" md-sort-by="shop" md-numeric>{{ item.shop }}</md-table-cell>
+            <md-table-cell md-label="Acciones">
+                <md-button @click="edit(item)" class="md-icon-button"><md-icon>edit</md-icon></md-button>
+                <md-button class="md-icon-button" @click="deleteItem(item)"><md-icon>delete</md-icon></md-button>
+            </md-table-cell>
+        </md-table-row>
+    </md-table>
     <md-dialog :md-active.sync="activeDialog" :md-close-on-esc="!sending" :md-click-outside-to-close="!sending" @md-closed="closeDialog()">
         <md-progress-bar class="md-primary" md-mode="indeterminate" v-if="sending"></md-progress-bar>
         <md-dialog-title>Editar cliente</md-dialog-title>
@@ -105,9 +103,9 @@
                     <tbody>
                         <tr v-for="order of customer.orders" :key="order.id">
                             <th scope="row">{{order.id}}</th>
-                            <td>{{ order.state.name}}</td>
-                            <td>{{ order.created_at }}</td>
-                            <td>S/{{ order.amount }}</td>
+                            <td class="text-capitalize">{{ order.state.name}}</td>
+                            <td class="text-capitalize">{{ order.date }}</td>
+                            <td>S/ {{ order.payment.amount }}</td>
                             <td><md-button :href="`/admin/orders/${order.id}/edit`" class="md-icon-button"><md-icon>edit</md-icon></md-button></td>
                         </tr>
                     </tbody>
@@ -200,7 +198,7 @@ export default {
         },
         edit(item){
             this.activeDialog = true;
-            axios.get(`/admin/customers/${item.id}`).then(response => {
+            axios.get(`/admin/customers/${item.id}?json=true`).then(response => {
                 this.customer = response.data.customer;
                 this.documents = response.data.documents;
             });

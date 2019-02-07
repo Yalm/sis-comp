@@ -33,7 +33,7 @@
                 <li class="mb-2"><a href="/admin/customers"><i class="material-icons">account_circle</i><span class="hide-menu">Clientes </span></a></li>
                 <li class="mb-2"><a href="/admin/orders"><i class="material-icons">shopping_basket</i><span class="hide-menu">Pedidos </span></a></li>
                 <li class="mb-2"><a href="/admin/users"><i class="material-icons">assignment_ind</i><span class="hide-menu">Usuarios </span></a></li>
-                <li class="mb-2"><a href="/admin/report"><i class="material-icons">pie_chart</i><span class="hide-menu">Reportes </span></a></li>
+                <li class="mb-2"><a href="/admin/reports"><i class="material-icons">pie_chart</i><span class="hide-menu">Reportes </span></a></li>
             </ul>
         </nav>
     </aside>

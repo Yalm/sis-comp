@@ -26,15 +26,22 @@ class CustomerController extends Controller
 		});
         return view('dashboard.customer.index',['customers' => $customers]);
     }
-    public function show($id){
+    public function show(Request $request,$id){
         $customer = Customer::findOrFail($id);
         $documents = Document::all();
         $customer->orders;
         $customer->orders->each(function($order)
 		{
             $order->state;
-		});
-        return response()->json(['documents' => $documents,'customer' => $customer],200);
+            $order->payment;
+            $order->date = $order->created_at->format('F d \,\ Y ');
+        });
+
+        if($request->ajax() && $request->json){
+            return response()->json(['documents' => $documents,'customer' => $customer],200);
+        }else{
+            return view('dashboard.customer.show',['documents' => $documents,'customer' => $customer,'orderRequest' => $request->order]);
+        }
     }
     public function update(CustomerRequest $request,$id){
         $customer = Customer::findOrFail($id);

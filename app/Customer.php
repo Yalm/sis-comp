@@ -19,7 +19,7 @@ class Customer extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'email_verified_at'
     ];
 
     /**
@@ -45,6 +45,12 @@ class Customer extends Authenticatable implements MustVerifyEmail
     {
       return $this->hasMany(Order::class);
     }
+
+    public function document()
+	{
+		return $this->belongsTo(Document::class);
+    }
+
 
     public function sendPasswordResetNotification($token)
     {

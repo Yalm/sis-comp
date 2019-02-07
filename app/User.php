@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\UserResetPasswordNotification;
+use App\Notifications\UserOrderNotification;
 
 class User extends Authenticatable
 {
@@ -33,5 +34,10 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new UserResetPasswordNotification($token));
+    }
+
+    public function sendOrderNotification($order)
+    {
+        $this->notify(new UserOrderNotification($order));
     }
 }

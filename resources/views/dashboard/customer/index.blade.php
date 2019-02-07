@@ -10,9 +10,9 @@
                 <li class="breadcrumb-item"><a class="text-dark" href="admin">Listado de clientes</a></li>
             </ul>
         </div>
-        <md-card class="col-12">
+        <div class="col-12 pl-0 pr-0">
             <customer-component :data="{{$customers}}"></customer-component>
-        </md-card>
+        </div>
     </div>
 </div>
 @endsection

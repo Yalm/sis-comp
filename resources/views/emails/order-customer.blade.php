@@ -7,7 +7,7 @@ Gracias por comprar en nuestra tienda. A continuación se muestra su recibo y en
 | Producto      | Cantidad     | Precio  |
 | ------------- |:-------------:| --------:|
 @foreach($order->products as $product)
-| {{ substr($product->name, 0, -35) }}... | {{$product->pivot->quantity}}  | S/{{$product->price}} |
+| {{ $product->name }} | {{$product->pivot->quantity}}  | S/{{$product->price}} |
 @endforeach
 @endcomponent
 

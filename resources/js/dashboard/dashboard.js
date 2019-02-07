@@ -13,6 +13,7 @@ import es from 'vee-validate/dist/locale/es';
 import VeeValidate, { Validator } from 'vee-validate';
 import 'vue-material/dist/vue-material.min.css';
 
+window.Chart = require('chart.js');
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -40,6 +41,10 @@ Vue.component('category-component', require('./components/CategoryComponent.vue'
 Vue.component('profile-component', require('./components/ProfileComponent.vue').default);
 Vue.component('customer-component', require('./components/CustomerComponent.vue').default);
 Vue.component('user-component', require('./components/UserComponent.vue').default);
+Vue.component('order-table-component', require('./components/OrderTableComponent.vue').default);
+Vue.component('order-component', require('./components/OrderComponent.vue').default);
+Vue.component('report-component', require('./components/ReportComponent.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -64,5 +69,5 @@ const dashboard = new Vue({
                 localStorage.removeItem('ativeMenu');
             }
         }
-    }
+    },
 });

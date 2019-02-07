@@ -36,7 +36,7 @@
                             <th>SUBTOTAL</th>
                             <td>
                                 <b class="amount">
-                                    S/{{$order->amount}}
+                                    S/{{$order->payment->amount }}
                                 </b>
                             </td>
                         </tr>
@@ -44,7 +44,7 @@
                             <th>TOTAL</th>
                             <td>
                                 <span class="amount">
-                                    S/.{{$order->amount}}
+                                    S/.{{$order->payment->amount}}
                                 </span>
                             </td>
                         </tr>

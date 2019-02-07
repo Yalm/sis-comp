@@ -12,7 +12,7 @@
         </div>
         <md-card class="col-12">
             <md-button href="/admin/products/create" class="md-raised md-primary mt-3">Añadir nuevo</md-button>
-            <md-card-content>
+            <md-card-content class="pl-0 pr-0 pt-0">
                 <table-component :data="{{$products}}" name="producto" link="products"></table-component>
             </md-card-content>
         </md-card>
