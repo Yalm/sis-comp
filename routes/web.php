@@ -53,7 +53,7 @@ Route::group(['middleware'=>['auth:web','verified','actived']], function()
 	Route::put('customer/edit_profile','Shop\CustomerController@edit_profile');
 });
 
-/*
+
 Route::prefix('admin')->group(function ()
 {
     Route::get('/login', 'Auth\UserLoginController@showLoginForm')->name('user.login');
@@ -84,4 +84,4 @@ Route::prefix('admin')->group(function ()
         Route::get('/reports/purchases','Dashboard\ReportController@purchases');
         Route::get('/reports/topCustomer','Dashboard\ReportController@topCustomer');
     });
-});*/
+});

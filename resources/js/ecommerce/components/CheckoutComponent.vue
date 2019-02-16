@@ -126,7 +126,7 @@ export default {
 			title: 'SIS & COMP',
 			currency: 'PEN',
 			description: 'Lo mejor en equipos de computo y accesorios',
-			amount: this.total * 100
+			amount: this.total *100
         });
     },
     methods: {

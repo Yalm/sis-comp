@@ -22,7 +22,7 @@
 			@endif
             <h2 class="text-center pb-4">Envía tu mensaje</h2>
             <div class="form-group from-siscom">
-                <input type="email" class="input-siscom form-control" v-validate="'required|email'"
+                <input type="email" class="input-siscom form-control" v-validate="'required|email'" required
                     name="email" aria-label="Email" placeholder="Tu Correo*">
                 <span class="focus-border" v-show="!errors.first('surnames')">
                     <i></i>
@@ -32,7 +32,7 @@
                 </span>
             </div>
             <div class="form-group from-siscom">
-                <textarea class="form-control input-siscom" id="exampleFormControlTextarea1" rows="5" name="message" placeholder="¿Cómo podemos ayudar?"></textarea>
+                <textarea class="form-control input-siscom" required id="exampleFormControlTextarea1" rows="5" name="message" placeholder="¿Cómo podemos ayudar?"></textarea>
                 <span class="focus-border" v-show="!errors.first('plus_info')">
                     <i></i>
                 </span>

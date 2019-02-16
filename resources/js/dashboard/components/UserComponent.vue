@@ -107,7 +107,7 @@ export default {
             email:null,
             surnames: null,
             password: null,
-            actived: false
+            actived: true
         },
         editBtn: false,
         sending: false
@@ -177,7 +177,7 @@ export default {
                 name: item.name,
                 surnames: item.surnames,
                 email: item.email,
-                actived: item.actived
+                actived: item.actived == '1' ? true:false
             };
             this.editBtn = true;
         },deleteItem(item){

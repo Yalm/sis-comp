@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\UserResetPasswordNotification;
 use App\Notifications\UserOrderNotification;
+use App\Notifications\ContactUsNotification;
 
 class User extends Authenticatable
 {
@@ -39,5 +40,10 @@ class User extends Authenticatable
     public function sendOrderNotification($order)
     {
         $this->notify(new UserOrderNotification($order));
+    }
+
+    public function sendContactUsNotification($message,$from)
+    {
+        $this->notify(new ContactUsNotification($message,$from));
     }
 }

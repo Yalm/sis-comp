@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Product;
+use App\User;
 use Illuminate\Support\Facades\Storage;
 
 class ShopController extends Controller
@@ -60,15 +61,11 @@ class ShopController extends Controller
 
     public function sendContact(Request $request)
     {
-        /*Mail::send('emails.contact-us',
-        [
-            'email' => $request->email,
-            'user_message' => $request->message,
-        ], function($message) use($request)
-        {
-            $message->from($request->email);
-            $message->to('i2917724@continental.edu.pe', 'Admin')->subject('Mensaje de Contáctanos');
-        });*/
+        $users = User::where('actived',true)->get();
+        foreach($users as &$user){
+            $user->sendContactUsNotification($request->message,$request->email);
+        }
+
         return back()->with('success', '¡Gracias por contactarnos!');
 
     }
