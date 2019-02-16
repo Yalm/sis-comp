@@ -1,0 +1,171 @@
+button
+    border: none
+    outline: none
+    background: none
+    &:focus , &:active
+        outline: none
+body
+    margin: 0
+    line-height: 1.5
+    font-weight: 300
+a
+    color: #777
+    &:focus , &:active ,&:hover
+        outline: none
+        color: #777
+        background-color: none !important
+        text-decoration: none !important
+ul
+    list-style: none
+.noUi-connect
+    background: $primary
+.noUi-handle:focus
+    outline: none
+
+.btn-siscom
+    border: 2px solid #313537
+    background-color: #313537
+    color: #ffffff !important
+    font-size: 100%
+    line-height: 18px
+    padding: 12px 20px
+    text-transform: uppercase
+    cursor: pointer
+    text-align: center
+    &.height-btn
+        height: 100%
+    &.check
+        width: 100%
+    .d-block
+        display: block
+    &:disabled
+        cursor: not-allowed
+        opacity: .65
+        border-color: #313537
+        background-color: #313537
+        &:hover
+            background-color: #313537
+            border-color: #313537
+            color: #fff !important
+    &:hover
+        background-color: transparent
+        color: #313537 !important
+
+.loading
+    cursor: wait
+    &::before
+        content: ''
+        width: 100%
+        height: 100%
+        background-color: #000000
+        opacity: 0.5
+        position: absolute
+        top: 0
+        z-index: 100
+    &::after
+        background-image: url('data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDQ1Ni44MTcgNDU2LjgxNyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDU2LjgxNyA0NTYuODE3OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTEwOS42NDEsMzI0LjMzMmMtMTEuNDIzLDAtMjEuMTMsMy45OTctMjkuMTI1LDExLjk5MWMtNy45OTIsOC4wMDEtMTEuOTkxLDE3LjcwNi0xMS45OTEsMjkuMTI5ICAgIGMwLDExLjQyNCwzLjk5NiwyMS4xMjksMTEuOTkxLDI5LjEzYzcuOTk4LDcuOTk0LDE3LjcwNSwxMS45OTEsMjkuMTI1LDExLjk5MWMxMS4yMzEsMCwyMC44ODktMy45OTcsMjguOTgtMTEuOTkxICAgIGM4LjA4OC03Ljk5MSwxMi4xMzItMTcuNzA2LDEyLjEzMi0yOS4xM2MwLTExLjQyMy00LjA0My0yMS4xMjEtMTIuMTMyLTI5LjEyOUMxMzAuNTI5LDMyOC4zMzYsMTIwLjg3MiwzMjQuMzMyLDEwOS42NDEsMzI0LjMzMnoiIGZpbGw9IiNGRkZGRkYiLz4KCQk8cGF0aCBkPSJNMTAwLjUwNSwyMzcuNTQyYzAtMTIuNTYyLTQuNDcxLTIzLjMxMy0xMy40MTgtMzIuMjY3Yy04Ljk0Ni04Ljk0Ni0xOS43MDItMTMuNDE4LTMyLjI2NC0xMy40MTggICAgYy0xMi41NjMsMC0yMy4zMTcsNC40NzMtMzIuMjY0LDEzLjQxOGMtOC45NDUsOC45NDctMTMuNDE3LDE5LjcwMS0xMy40MTcsMzIuMjY3YzAsMTIuNTYsNC40NzEsMjMuMzA5LDEzLjQxNywzMi4yNTggICAgYzguOTQ3LDguOTQ5LDE5LjcwMSwxMy40MjIsMzIuMjY0LDEzLjQyMmMxMi41NjIsMCwyMy4zMTgtNC40NzMsMzIuMjY0LTEzLjQyMkM5Ni4wMzQsMjYwLjg1NywxMDAuNTA1LDI1MC4xMDIsMTAwLjUwNSwyMzcuNTQyeiIgZmlsbD0iI0ZGRkZGRiIvPgoJCTxwYXRoIGQ9Ik0zNjUuNDU0LDEzMi40OGM2LjI3NiwwLDExLjY2Mi0yLjI0LDE2LjEyOS02LjcxMWM0LjQ3My00LjQ3NSw2LjcxNC05Ljg1NCw2LjcxNC0xNi4xMzQgICAgYzAtNi4yODMtMi4yNDEtMTEuNjU4LTYuNzE0LTE2LjEzYy00LjQ3LTQuNDc1LTkuODUzLTYuNzExLTE2LjEyOS02LjcxMWMtNi4yODMsMC0xMS42NjMsMi4yNC0xNi4xMzYsNi43MTEgICAgYy00LjQ3LDQuNDczLTYuNzA3LDkuODQ3LTYuNzA3LDE2LjEzczIuMjM3LDExLjY1OSw2LjcwNywxNi4xMzRDMzUzLjc5MSwxMzAuMjQ0LDM1OS4xNzEsMTMyLjQ4LDM2NS40NTQsMTMyLjQ4eiIgZmlsbD0iI0ZGRkZGRiIvPgoJCTxwYXRoIGQ9Ik0xMDkuNjQ0LDU5LjM4OGMtMTMuODk3LDAtMjUuNzQ1LDQuOTAyLTM1LjU0OCwxNC43MDNjLTkuODA0LDkuODAxLTE0LjcwMywyMS42NS0xNC43MDMsMzUuNTQ0ICAgIGMwLDEzLjg5OSw0Ljg5OSwyNS43NDMsMTQuNzAzLDM1LjU0OGM5LjgwNiw5LjgwNCwyMS42NTQsMTQuNzA1LDM1LjU0OCwxNC43MDVzMjUuNzQzLTQuOTA0LDM1LjU0NC0xNC43MDUgICAgYzkuODAxLTkuODA1LDE0LjcwMy0yMS42NTIsMTQuNzAzLTM1LjU0OGMwLTEzLjg5NC00LjkwMi0yNS43NDMtMTQuNzAzLTM1LjU0NEMxMzUuMzg3LDY0LjI5LDEyMy41MzgsNTkuMzg4LDEwOS42NDQsNTkuMzg4eiIgZmlsbD0iI0ZGRkZGRiIvPgoJCTxwYXRoIGQ9Ik00MzkuNjg0LDIxOC4xMjVjLTUuMzI4LTUuMzMtMTEuNzk5LTcuOTkyLTE5LjQxLTcuOTkyYy03LjYxOCwwLTE0LjA4OSwyLjY2Mi0xOS40MTcsNy45OTIgICAgYy01LjMyNSw1LjMzLTcuOTg3LDExLjgwMy03Ljk4NywxOS40MjFjMCw3LjYxLDIuNjYyLDE0LjA5Miw3Ljk4NywxOS40MWM1LjMzMSw1LjMzMiwxMS43OTksNy45OTQsMTkuNDE3LDcuOTk0ICAgIGM3LjYxMSwwLDE0LjA4Ni0yLjY2MiwxOS40MS03Ljk5NGM1LjMzMi01LjMyNCw3Ljk5MS0xMS44LDcuOTkxLTE5LjQxQzQ0Ny42NzUsMjI5LjkzMiw0NDUuMDIsMjIzLjQ1OCw0MzkuNjg0LDIxOC4xMjV6IiBmaWxsPSIjRkZGRkZGIi8+CgkJPHBhdGggZD0iTTM2NS40NTQsMzMzLjQ3M2MtOC43NjEsMC0xNi4yNzksMy4xMzgtMjIuNTYyLDkuNDIxYy02LjI3Niw2LjI3Ni05LjQxOCwxMy43OTgtOS40MTgsMjIuNTU5ICAgIGMwLDguNzU0LDMuMTQyLDE2LjI3Niw5LjQxOCwyMi41NmM2LjI4Myw2LjI4MiwxMy44MDIsOS40MTcsMjIuNTYyLDkuNDE3YzguNzU0LDAsMTYuMjcyLTMuMTQxLDIyLjU1NS05LjQxNyAgICBjNi4yODMtNi4yODMsOS40MjItMTMuODAyLDkuNDIyLTIyLjU2YzAtOC43NjEtMy4xMzktMTYuMjc1LTkuNDIyLTIyLjU1OUMzODEuNzI3LDMzNi42MSwzNzQuMjA4LDMzMy40NzMsMzY1LjQ1NCwzMzMuNDczeiIgZmlsbD0iI0ZGRkZGRiIvPgoJCTxwYXRoIGQ9Ik0yMzcuNTQ3LDM4My43MTdjLTEwLjA4OCwwLTE4LjcwMiwzLjU3Ni0yNS44NDQsMTAuNzE1Yy03LjEzNSw3LjEzOS0xMC43MDUsMTUuNzQ4LTEwLjcwNSwyNS44MzcgICAgczMuNTY2LDE4LjY5OSwxMC43MDUsMjUuODM3YzcuMTQyLDcuMTM5LDE1Ljc1MiwxMC43MTIsMjUuODQ0LDEwLjcxMmMxMC4wODksMCwxOC42OTktMy41NzMsMjUuODM4LTEwLjcxMiAgICBjNy4xMzktNy4xMzgsMTAuNzA4LTE1Ljc0OCwxMC43MDgtMjUuODM3cy0zLjU2OS0xOC42OTgtMTAuNzA4LTI1LjgzN1MyNDcuNjM2LDM4My43MTcsMjM3LjU0NywzODMuNzE3eiIgZmlsbD0iI0ZGRkZGRiIvPgoJCTxwYXRoIGQ9Ik0yMzcuNTQ3LDBjLTE1LjIyNSwwLTI4LjE3NCw1LjMyNy0zOC44MzQsMTUuOTg2Yy0xMC42NTcsMTAuNjYtMTUuOTg2LDIzLjYwNi0xNS45ODYsMzguODMyICAgIGMwLDE1LjIyNyw1LjMyNywyOC4xNjcsMTUuOTg2LDM4LjgyOGMxMC42NiwxMC42NTcsMjMuNjA2LDE1Ljk4NywzOC44MzQsMTUuOTg3YzE1LjIzMiwwLDI4LjE3Mi01LjMyNywzOC44MjgtMTUuOTg3ICAgIGMxMC42NTYtMTAuNjU2LDE1Ljk4NS0yMy42MDEsMTUuOTg1LTM4LjgyOGMwLTE1LjIyNS01LjMyOS0yOC4xNjgtMTUuOTg1LTM4LjgzMkMyNjUuNzE5LDUuMzMsMjUyLjc3OSwwLDIzNy41NDcsMHoiIGZpbGw9IiNGRkZGRkYiLz4KCTwvZz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K')
+        background-repeat: no-repeat, repeat
+        position: absolute
+        top: 40%
+        left: 50%
+        width: 64px
+        height: 64px
+        content: ''
+        animation: rotation 1s ease-in-out infinite
+        z-index: 101
+.input-siscom
+    border: 1px solid #d1d1d1
+    color: #5f5f5f
+    border-radius: 0
+    font-size: .938em
+    line-height: 1.25rem
+    margin: 0
+    padding: .938rem 1.25rem
+    letter-spacing: .03em
+    &.select
+        padding: 0.375rem 0.75rem
+    &:focus
+        outline: none
+        box-shadow: none
+.from-siscom
+    position: relative
+    .input-siscom
+.input-siscom ~ .focus-border:before, .input-siscom ~ .focus-border:after
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
+    width: 0
+    height: 2px
+    background-color: #bbb
+    transition: 0.3s
+.input-siscom ~ .focus-border:after
+    top: auto
+    bottom: 0
+    left: auto
+    right: 0
+
+.input-siscom ~ .focus-border i:before, .input-siscom ~ .focus-border i:after
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
+    width: 2px
+    height: 0
+    background-color: #bbb
+    transition: 0.4s
+.input-siscom ~ .focus-border i:after
+    left: auto
+    right: 0
+    top: auto
+    bottom: 0
+.input-siscom:focus ~ .focus-border:before, .input-siscom:focus ~ .focus-border:after
+    width: 100%
+    transition: 0.3s
+.input-siscom:focus ~ .focus-border i:before,.input-siscom:focus ~ .focus-border i:after
+    height: 100%
+    transition: 0.4s
+.invalid-feedback
+    display: block
+
+.custom-control-input:checked ~ .custom-control-label::before
+    background-color: #313537
+    border-color: #313537
+
+.qty
+    .col-5 , .col-7
+        padding: 0
+        margin: 0
+    .num-qty
+        -webkit-appearance: none
+        border: 1px solid #313537
+        color: #666
+        text-align: center
+        font-size: 16px
+        line-height: 1.6
+        display: inline-block
+        outline: none
+        width: 100%
+        height: 50px
+    .qty-error
+        display: block
+    .input-group-btn-vertical
+        display: inline-block
+        .btn-qty-up , .btn-qty-down
+            display: block
+            border: 1px solid #333
+            cursor: pointer
+            i
+                font-size: 100%
+    input[type='number']
+        -moz-appearance:textfield
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button
+        -webkit-appearance: none
+    .full-width-height
+        width: 100%
+        height: 56px
+
+.w-100
+    width: 100%

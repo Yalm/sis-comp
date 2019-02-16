@@ -1,0 +1,27 @@
+// Variables
+@import 'variables'
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap'
+@import '~nouislider/distribute/nouislider'
+// Default Styles
+@import 'default'
+
+//MATERIAL
+@import '~vue-material/dist/theme/engine'
+@include md-register-theme("default", (primary: md-get-palette-color(gray, 900),accent: md-get-palette-color(red, A200)))
+@import "~vue-material/dist/theme/all"
+// COR
+@import 'header'
+@import 'footer'
+@import 'product'
+@import 'cart'
+@import 'show-product'
+//PAGES
+@import 'home'
+@import 'login'
+@import 'register'
+@import 'checkout'
+@import 'profile'
+@import 'shop'
+@import 'contact'

@@ -1,0 +1,46 @@
+.category
+    color: #3a3a3a
+    text-transform: uppercase
+    padding-top: 7px
+    .category-title
+        font-size: 17px
+        position: relative
+        cursor: pointer
+        color: #000
+        padding-bottom: 20px
+        margin-bottom: 25px
+        border-bottom: 2px solid #313537
+        &:after
+            position: absolute
+            content: ''
+            width: 7px
+            height: 7px
+            border-width: 1px 0 0 1px
+            border-style: solid
+            border-color: #3a3a3a
+            right: 1em
+            transform: rotate(47deg) translate(0, -50%)
+            transform-origin: top
+            top: 20%
+            transition: all .3s ease-out
+        &.collapsed:after
+            transform: rotate(-135deg) translate(0, -50%)
+    .category-list
+        padding-left: 0
+        list-style: none
+        li
+            padding-bottom: 7px
+        .search-link
+            color: #333
+            font-size: .938rem
+            text-transform: capitalize
+        .magnitude
+            color: #c1c1c1
+            font-size: .75em
+.empty-products
+    i
+        padding-top: 2rem
+        font-size: 80px
+
+.shop
+    padding: 2rem 0 5.3rem 0

@@ -1,0 +1,16 @@
+// Variables
+@import 'variables'
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap'
+
+
+//MATERIAL
+@import '~vue-material/dist/theme/engine'
+@include md-register-theme("default", (primary: md-get-palette-color(gray, 900),accent: md-get-palette-color(red, A200)))
+@import "~vue-material/dist/theme/all"
+
+//Core
+@import 'core/sidebarnav'
+@import 'core/header'
+@import 'core/default'

@@ -1,0 +1,44 @@
+.checkout
+    padding: 2rem 0 8rem 0
+.checkout-review-order
+    background: rgba(84, 84, 84, .05)
+    padding: 10px 40px 40px
+    position: relative
+    &:after ,&:before
+        position: absolute
+        bottom: -10px
+        left: 0
+        transform: rotate(180deg)
+        content: ""
+        display: block
+        height: 10px
+        width: 100%
+        background-color: transparent
+        background-size: 20px 20px
+        background-position: 0 10px, 40px 40px
+        background-image: radial-gradient(closest-side, transparent 9px, rgba(84, 84, 84, .05) 100%)
+    &:before
+        top: -10px
+        transform: rotate(0deg)
+    .table_ch
+        width: 100%
+        max-width: 100%
+        margin-bottom: 1rem
+        background-color: transparent
+        border-collapse: collapse
+        th,td
+            padding-right: .75rem
+            padding-left: .75rem
+            padding-top: 1.50rem
+            padding-bottom: 1.50rem
+    tfoot .order-total .amount
+        font-size: 30px
+        font-size: 1.875rem
+        font-weight: 700
+    .cart_items
+        border-top: 1px solid #DEDEDE
+        border-bottom: 1px solid
+    .text-help-method
+        margin-top: 1rem
+    .check-p
+        padding-bottom: 1rem

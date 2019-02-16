@@ -1,0 +1,36 @@
+$color-footer: #bdbdbd
+$background-footer: #222222
+$footer-title-color: #e5e5e5
+
+.footer
+    background-color: $background-footer
+    padding: 25px 0 30px 0
+    font-size: 13px
+    .item-link
+        color: $color-footer !important
+        display: block
+        margin-bottom: 12px
+        text-decoration: none
+    .footer-title-items
+        font-size: 14px
+        font-weight: 400
+        font-style: normal
+        line-height: 1em
+        text-transform: uppercase
+        color: $footer-title-color
+        letter-spacing: .15em
+        margin: 25px 0
+    .copyright
+        color: $color-footer
+        text-transform: uppercase
+        margin: 2.5rem 0 5px 0
+@media screen and (max-width: 770px)
+    .footer
+        padding: 15px 0 10px 0
+        .col-md-4
+            display: none
+        .copyright
+            margin: 5px 0
+@media screen and (max-width: 350px)
+    .footer .copyright
+        font-size: 11px

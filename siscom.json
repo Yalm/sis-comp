@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "siscom-ed198",
+  "private_key_id": "2aac89c258a08d5ae35d8cacca468f1b9538de48",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDoEsB1UO9S12xW\nVicYNijjzBqlqZTeIRJdWSHhmRPZlfO7fZNi/bb8dnRWwo0yguEM/2OKE+rS4m7K\nlar0IUvp8CkxZOKf9TG11P+UAWZhLagEaB/wGD22OKShpM0Gjxz+HtuH2DSOGdg5\nV6txZ6wSPf0IZtJ3Kb2Fl898kYCBD/qJdgvUNULeSQ1BCPBPpxStUZQIV5wwKhHZ\ne4llduyG+OTP2jDkIHyiJcCvIqVeeaA3WIW6jqDwehbagJo4nO3K9XRBzP24I0FT\n9qSFYbKcYv9IK+GiLdtOcyLZY8iA7c3sX/uX0nuEKU/KNbR/gLTEpEgMp71gtXFN\ngXrpacerAgMBAAECggEAZDd8zuyVfNO0YBAyL71rqPuB4lo6BDaJ5K/R9scREFw1\n9ZhD5nKj66AHm1PGf7KPFvrOdFknhcvshiVdvrEGRE7GqyLizqqmvdvuRm7YVEzQ\nCp8gc6E0PRV22qr9MsDoh0CyEpamE1tLyW93hLB9WR9VvqQQbQ8kXaVyH1wB/zkh\ndszwAIlbTDMkYNbehteQ+6oX9sNuzcPAxMmZrAwaiCly+lBvKqN1T3rL/QEUgIoe\nQST7v6a1tgr+MZ/oZPiE5Qgjky8g5/exoe+OnBnoSpP5IWvqf38DIlMk6MQmjp7l\nVIQb1tmbMoYyk9N8+aipvOPASXgNnX9pPfoHz1DuyQKBgQD/7UUVcWuQ74euDCgo\nMqrRCdExWOOU6Feg+eI/6/5E2h5jO8ttNOOuOQWyKdbbh3KcLVwJZNDgmWO+uirb\nJpBxDEiCAmGhluxzmURMJ4t3fudjy3myCI/S9Liluw6rC5OQTmXKp16KITjFF8TL\nMVPAu6zxVleO3O3KVpV2D9fHfQKBgQDoI7x3OjS7u6lnoyIBnmsVadpkin+Qxast\nmKaSJCDA5Fk75vBd5L7o7IVYZeXpgMfoCAoQajwEDIJD7k/P8RG51X0CEMq6HOKF\nKy+tIth/cP1VTG/vwuyNSndLuJ9+h2vqkMjqnnfsLM6cWpblS/1lmQWxSK+xkAum\nhI5FqJmERwKBgBIkme8pOTzvHilCh15CKUXkckYTTR7zUbMBw/5QFph+9gSG6qb1\nRubE+BhnSuoJMiDMPmgUE5K4jQ+qVvtuQnMhMcq1rIIuFtkjFmpnq0VvY6v5cski\nPj/wRV7KYgHSMkXaqPCy6MrWDBY81yCogI17QIljW5WvJ9ReSv4xpVRpAoGBAKAe\nJhzG1SC4bDzD1Ozw7EO046J9tUeSUGP+6sXajYz+9F3RCPJ6mQPoQIGcp1zMKxbs\nlKSF4ieYyTE562suiF951ePa2TpOOiBIjXYKlvIwaUywkHT8KlW6i1Z7XefUWKdO\nfob2DxmkPk6yXWqDY6D0T2zdCfKbvK16uPdrN5h5AoGBAMISzkM8IQw9kuIpErqr\nOdpGl+kzaq7NCAPEEvnwkH6mKVUPfwm9djpLTmDCcGX+ngw4x7+xf9dPbOH6KzyW\nvmUlo6ewc2yP1c686bYbaR5XpG7vycxRweWSTyssBV6esXhnaV7o1VzgIrT9L7Ci\nrr8OrYMLMDmf4MbHlkwbPb3v\n-----END PRIVATE KEY-----\n",
+  "client_email": "laravel@siscom-ed198.iam.gserviceaccount.com",
+  "client_id": "114026838116736559514",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/laravel%40siscom-ed198.iam.gserviceaccount.com"
+}
