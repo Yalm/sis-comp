@@ -24,6 +24,7 @@
         <header>
             <nav class="navbar container header-top">
                 <a class="navbar-brand header_title flex-grow-1" href="{{ url('/') }}">SIS & COM</a>
+                <a class="navbar-brand header_title flex-grow-1" href="{{ url('/') }}">SIS & COMP</a>
                 <form action="{{ url('shop') }}" method="get" class="search-ui p-2 d-flex align-items-center">
                     <input type="text" aria-label="search products" name="search" placeholder="Buscar..." class="search-input"
                         autocomplete="off">
