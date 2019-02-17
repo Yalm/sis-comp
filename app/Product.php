@@ -29,7 +29,7 @@ class Product extends Model
     public function scopeName($query, $name)
 	{
 		if($name)
-			return $query->where('name','LIKE',"%$name%");
+			return $query->whereRaw('LOWER(name) LIKE ? ',[trim(strtolower($name)).'%']);
     }
     public function scopeCategorySearch($query, $id)
 	{

@@ -30,8 +30,8 @@
                 <md-icon>lock</md-icon>
                 <label>Contraseña </label>
                 <md-input type="password" name="password" required></md-input>
-                @if ($errors->has('email'))
-                    <span class="md-error">{{ $errors->first('email') }}</span>
+                @if ($errors->has('password'))
+                    <span class="md-error">{{ $errors->first('password') }}</span>
                 @endif
             </md-field>
 
@@ -43,6 +43,9 @@
             <div class="custom-control custom-checkbox check-p">
                 <input type="checkbox" class="custom-control-input" id="terms" name="terms" v-validate="'required'">
                 <label class="custom-control-label" for="terms">He leído y estoy de acuerdo con los <a href="/terms_and_conditions" class="hover_ch">términos y condiciones</a> de la web</label>
+                @if ($errors->has('terms'))
+                    <p class="text-danger">{{ $errors->first('terms') }}</p>
+                @endif
             </div>
             <md-button class="md-raised md-primary" type="submit">Registrarse</md-button>
         </form>
