@@ -49295,7 +49295,7 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                    Carrito de compras\n                "
+                          "\r\n                    Carrito de compras\r\n                "
                         )
                       ]
                     ),
@@ -49458,9 +49458,9 @@ var render = function() {
                         _c("td", [
                           _c("b", { staticClass: "amount" }, [
                             _vm._v(
-                              "\n                                    S/" +
+                              "\r\n                                    S/" +
                                 _vm._s(_vm.myTotal || _vm.total) +
-                                "\n                                "
+                                "\r\n                                "
                             )
                           ])
                         ])
@@ -49472,9 +49472,9 @@ var render = function() {
                         _c("td", [
                           _c("span", { staticClass: "amount" }, [
                             _vm._v(
-                              "\n                                    S/ " +
+                              "\r\n                                    S/ " +
                                 _vm._s(_vm.myTotal || _vm.total) +
-                                "\n                                "
+                                "\r\n                                "
                             )
                           ])
                         ])
@@ -49653,7 +49653,7 @@ var render = function() {
                   ),
                   _c("br"),
                   _vm._v(
-                    "\n                Finalize con su compra para procesar de inmediato su pedido.\n            "
+                    "\r\n                Finalize con su compra para procesar de inmediato su pedido.\r\n            "
                   )
                 ]
               ),
@@ -49702,9 +49702,9 @@ var render = function() {
                       _c("td", [
                         _c("b", { staticClass: "amount" }, [
                           _vm._v(
-                            "\n                                    S/" +
+                            "\r\n                                    S/" +
                               _vm._s(_vm.total) +
-                              "\n                                "
+                              "\r\n                                "
                           )
                         ])
                       ])
@@ -49716,9 +49716,9 @@ var render = function() {
                       _c("td", [
                         _c("span", { staticClass: "amount" }, [
                           _vm._v(
-                            "\n                                    S/." +
+                            "\r\n                                    S/." +
                               _vm._s(_vm.total) +
-                              "\n                                "
+                              "\r\n                                "
                           )
                         ])
                       ])
@@ -65197,9 +65197,9 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\trabajo\laravel\siscomp\resources\js\ecommerce\ecommerce.js */"./resources/js/ecommerce/ecommerce.js");
-__webpack_require__(/*! D:\trabajo\laravel\siscomp\resources\sass\dashboard\dashboard.sass */"./resources/sass/dashboard/dashboard.sass");
-module.exports = __webpack_require__(/*! D:\trabajo\laravel\siscomp\resources\sass\ecommerce\ecommerce.sass */"./resources/sass/ecommerce/ecommerce.sass");
+__webpack_require__(/*! E:\sis\sis-comp\resources\js\ecommerce\ecommerce.js */"./resources/js/ecommerce/ecommerce.js");
+__webpack_require__(/*! E:\sis\sis-comp\resources\sass\dashboard\dashboard.sass */"./resources/sass/dashboard/dashboard.sass");
+module.exports = __webpack_require__(/*! E:\sis\sis-comp\resources\sass\ecommerce\ecommerce.sass */"./resources/sass/ecommerce/ecommerce.sass");
 
 
 /***/ })
