@@ -15,3 +15,5 @@ mix.js('resources/js/ecommerce/ecommerce.js', 'public/js')
     .js('resources/js/dashboard/dashboard.js', 'public/js')
     .sass('resources/sass/dashboard/dashboard.sass', 'public/css')
     .sass('resources/sass/ecommerce/ecommerce.sass', 'public/css');
+
+mix.version();

@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/ecommerce.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/ecommerce.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -35,7 +35,7 @@
                 <a  title="Login" class="p-2 account_circle_login" href="{{ url('login') }}"><i class="material-icons">account_circle</i></a>
                 @else
                 <div class="user-circle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    <img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" class="img-fluid" alt="customer photo">
+                    <img src="{{ url('img/default-avatar.png') }}" class="img-fluid" alt="customer photo">
                 </div>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -111,7 +111,7 @@
     </div>
     <!-- Scripts -->
     @yield('myjsfile')
-    <script src="{{ asset('js/ecommerce.js') }}" defer></script>
+    <script src="{{ mix('js/ecommerce.js') }}" defer></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134452397-1"></script>
     <script>

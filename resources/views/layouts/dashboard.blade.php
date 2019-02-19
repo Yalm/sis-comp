@@ -13,7 +13,7 @@
     <meta name="description" content="Sis & Comp Perú lo mejor en equipos de computo y accesorios, solo las mejores marcas">
 
     <!-- Styles -->
-    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/dashboard.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons">
 </head>
 
@@ -44,7 +44,7 @@
     </div>
     <!-- Scripts -->
     @yield('myjsfile')
-    <script src="{{ asset('js/dashboard.js') }}" defer></script>
+    <script src="{{ mix('js/dashboard.js') }}" defer></script>
 </body>
 
 </html>

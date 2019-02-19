@@ -122,6 +122,11 @@ export default {
         errToken: false
     }),mounted() {
         Culqi.publicKey = this.culqui;
+        Culqi.options({
+            style: {
+                logo: 'https://i.ibb.co/ZhkmD14/logo-siscomp.png'
+            }
+        });
         Culqi.settings({
 			title: 'SIS & COMP',
 			currency: 'PEN',
