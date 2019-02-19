@@ -26,6 +26,7 @@ class CustomerController extends Controller
 		});
         return view('dashboard.customer.index',['customers' => $customers]);
     }
+
     public function show(Request $request,$id){
         $customer = Customer::findOrFail($id);
         $documents = Document::all();
@@ -43,6 +44,7 @@ class CustomerController extends Controller
             return view('dashboard.customer.show',['documents' => $documents,'customer' => $customer,'orderRequest' => $request->order]);
         }
     }
+
     public function update(CustomerRequest $request,$id){
         $customer = Customer::findOrFail($id);
 

@@ -8,6 +8,7 @@ use Jenssegers\Date\Date;
 class Payment extends Model
 {
     protected $guarded =[];
+    protected $primaryKey = 'order_id';
 
     public function paymentType()
     {
