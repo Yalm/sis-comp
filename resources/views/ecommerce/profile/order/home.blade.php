@@ -21,12 +21,21 @@
                 <tr class="text-center">
                     <th scope="row" class="text-uppercase text-truncate" style="max-width: 280px;">#{{ $order->id }}</th>
                     <td class="text-capitalize">{{ $order->created_at->format('F d \,\ Y ')  }}</td>
-                    <td class="text-capitalize {{ $order->getColorState() }}">{{ $order->state->name }}</td>
-                    <td>S/ {{ $order->payment->amount }}</td>
+                    <td class="text-capitalize {{ $order->getColorState() }}" id="tdstate{{$order->id}}" >{{ $order->state->name }}</td>
+                    @if($order->payment->amount == 0.00)
+                        <td>S/ {{$order->getTotal() }}</td>
+                    @else
+                        <td>S/ {{ $order->payment->amount }}</td>
+                    @endif
                     <td>
                         <md-button class="md-icon-button" href="{{ url('profile/orders',$order->getIdFormat() ) }}">
                             <md-icon>remove_red_eye</md-icon>
                         </md-button>
+                        @if($order->state_id == 4)
+                        <md-button class="md-icon-button" @click="deleteOrder({{$order->id}})" id="btn{{$order->id}}">
+                            <md-icon>delete</md-icon>
+                        </md-button>
+                        @endif
                     </td>
                 </tr>
                 @endforeach

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b8c29a8c83866940e3594fb59ce7137",
+    "content-hash": "44aa68d3a53296ee9147d6c057bac3bb",
     "packages": [
         {
             "name": "culqi/culqi-php",

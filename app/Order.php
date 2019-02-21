@@ -46,11 +46,15 @@ class Order extends Model
 				return 'text-warning';
 				break;
 			case 4:
-				return 'text-primary';
+				return 'text-warning';
 				break;
 			default:
 				echo "text-danger";
 		}
+    }
+    public function getTotal()
+    {
+        return $this->products()->sum('price');
     }
 
     public function getCreatedAtAttribute($date)
@@ -61,6 +65,16 @@ class Order extends Model
     public function payment()
 	{
 	  	return $this->hasOne(Payment::class);
+    }
+
+    public function shipping()
+	{
+	  	return $this->hasOne(Shipping::class);
+    }
+
+    public function voucher()
+	{
+	  	return $this->hasOne(Voucher::class);
     }
 
     public function scopeSearch($query,$s)

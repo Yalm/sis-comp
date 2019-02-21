@@ -5,20 +5,14 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Date\Date;
 
-class Payment extends Model
+class Shipping extends Model
 {
-    protected $guarded =[];
     protected $primaryKey = 'order_id';
+    public $timestamps = false;
 
-    public function paymentType()
-    {
-        return $this->belongsTo(PaymentType::class);
-    }
-
-    public function order()
-	{
-	  	return $this->hasOne(Order::class);
-    }
+    protected $fillable = [
+        'order_id','address', 'departament_id', 'province_id','district_id','price'
+    ];
 
     public function getCreatedAtAttribute($date)
 	{

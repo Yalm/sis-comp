@@ -16,15 +16,23 @@ class DocumentTableSeeder extends Seeder
             'name' => 'DNI',
             'length' => '8'
         ]);
+
         Document::create([
+            'id' => 6,
+            'name' => 'RUC',
+            'length' => '11'
+        ]);
+
+        Document::create([
+            'id' => 7,
             'name' => 'PASAPORTE',
             'length' => '12'
         ]);
 
         Document::create([
+            'id' => 4,
             'name' => '	CARNET EXT',
             'length' => '12'
         ]);
-
     }
 }

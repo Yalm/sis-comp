@@ -21,7 +21,7 @@
                 <md-table-cell md-label="Numero" md-sort-by="id" md-numeric>{{ item.id }}</md-table-cell>
                 <md-table-cell md-label="Fecha" md-sort-by="date" class="text-capitalize">{{ item.date }}</md-table-cell>
                 <md-table-cell md-label="Estado" md-sort-by="state" :class="`text-capitalize ${getColorState(item.state_id)}`">{{ item.state.name }}</md-table-cell>
-                <md-table-cell md-label="Monto" md-sort-by="amount" md-numeric>S/ {{ item.payment.amount }}</md-table-cell>
+                <md-table-cell md-label="Monto" md-sort-by="amount" >S/ {{ item.payment.amount }}</md-table-cell>
                 <md-table-cell md-label="Cliente" md-sort-by="customer">{{ item.customer.name }}</md-table-cell>
                 <md-table-cell md-label="Acciones" >
                     <md-button @click="edit(item)" class="md-icon-button"><md-icon>edit</md-icon></md-button>
@@ -38,9 +38,7 @@ export default {
     data: () => ({
         search: null,
         searched: null,
-    }),mounted(){
-        //console.dir(this.data);
-    },
+    }),
     methods: {
         searchOnTable (){
             axios.get(`/admin/orders?json=true&search=${this.search}`).then(response => {

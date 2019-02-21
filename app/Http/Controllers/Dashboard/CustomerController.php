@@ -36,6 +36,9 @@ class CustomerController extends Controller
             $order->state;
             $order->payment;
             $order->date = $order->created_at->format('F d \,\ Y ');
+            if($order->payment->amount == 0.00){
+                $order->payment->amount = $order->getTotal();
+            }
         });
 
         if($request->ajax() && $request->json){

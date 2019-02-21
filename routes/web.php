@@ -38,6 +38,7 @@ Route::group(['middleware'=>['auth:web','verified','actived']], function()
 	{
 		Route::get('/','Ecommerce\CustomerController@home');
         Route::get('/orders','Ecommerce\OrderController@index');
+        Route::delete('/orders/{order}','Ecommerce\OrderController@destroy');
         Route::get('/account','Ecommerce\CustomerController@account');
         Route::post('/changePassword','Ecommerce\CustomerController@changePassword')->name('changePassword');
         Route::put('/changeDataCustomer','Ecommerce\CustomerController@changeDataCustomer')->name('changeDataCustomer');

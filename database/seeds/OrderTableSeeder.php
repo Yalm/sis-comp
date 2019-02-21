@@ -11,6 +11,9 @@ class OrderTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('orders')->insert(['id' => 19, 'customer_id' => '1', 'state_id' => 2]);
+        DB::table('orders')->where('id', 19)->delete();
+
         /*factory(App\Order::class,50)->create()->each(function(App\Order $order){
 
             for ($i = 1; $i <= rand(1,20); $i++) {

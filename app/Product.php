@@ -43,7 +43,7 @@ class Product extends Model
         if($s != 'false' && $s != 'null' && $s)
             return $query->where('name','LIKE',"%$s%")
                         ->orWhere('price','LIKE',"%$s%")
-                        ->orWhere('url','LIKE',"%$s%");
+                        ->orWhere('stock','LIKE',"%$s%");
     }
 
     public static function top7Product($f1,$f2)

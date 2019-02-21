@@ -2400,37 +2400,86 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['orderp', 'states'],
   data: function data() {
     return {
       sending: false,
       order: null,
-      showSnackbar: false
+      showSnackbar: false,
+      districs: Array
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.order = this.orderp;
+    axios.get('/json/ubigeo/distritos.json').then(function (responseDistricts) {
+      _this.districs = responseDistricts.data['3656'];
+    });
   },
   methods: {
     update: function update() {
-      var _this = this;
+      var _this2 = this;
 
       this.sending = true;
       axios.put("/admin/orders/".concat(this.order.id), this.order).then(function (response) {
-        _this.showSnackbar = true;
-        _this.sending = false;
+        _this2.showSnackbar = true;
+        _this2.sending = false;
+        _this2.order = response.data;
       }).catch(function (err) {
         if (err.response.status == 422) {
           for (var error in err.response.data.errors) {
-            _this.$validator.errors.add({
+            _this2.$validator.errors.add({
               field: error,
               msg: err.response.data.errors[error][0]
             });
           }
+        } else if (err.response.status == 409) {
+          _this2.$swal.fire('Opps...', err.response.data.message, 'error');
+        } else {
+          _this2.$swal.fire('Opps...', 'Algo salio mal', 'error');
         }
 
-        _this.sending = false;
+        _this2.sending = false;
       });
     }
   }
@@ -2488,8 +2537,6 @@ __webpack_require__.r(__webpack_exports__);
       search: null,
       searched: null
     };
-  },
-  mounted: function mounted() {//console.dir(this.data);
   },
   methods: {
     searchOnTable: function searchOnTable() {
@@ -3260,8 +3307,6 @@ __webpack_require__.r(__webpack_exports__);
       searched: []
     };
   },
-  mounted: function mounted() {//console.dir(this.data);
-  },
   methods: {
     searchOnTable: function searchOnTable() {
       var _this = this;
@@ -3654,6 +3699,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3678,7 +3724,6 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/admin/reports/purchases?date_init=".concat(this.date_init.toJSON(), "&date_end=").concat(this.date_end.toJSON(), "&page=1")).then(function (response) {
         _this.orders = response.data;
         _this.progress = false;
-        console.log(_this.orders);
       });
     },
     nextPage: function nextPage(page) {
@@ -3704,6 +3749,9 @@ __webpack_require__.r(__webpack_exports__);
           top: 50
         },
         columns: [{
+          header: 'Numero',
+          dataKey: 'id'
+        }, {
           header: 'Cliente',
           dataKey: 'customer'
         }, {
@@ -3721,6 +3769,28 @@ __webpack_require__.r(__webpack_exports__);
         }]
       });
       pdfdoc.save('reporte.pdf');
+    },
+    getColorState: function getColorState(id) {
+      switch (id) {
+        case 'cancelado':
+          return 'text-danger';
+          break;
+
+        case 'completado':
+          return 'text-success';
+          break;
+
+        case 'pendiente de revisión':
+          return 'text-warning';
+          break;
+
+        case 'enviado':
+          return 'text-primary';
+          break;
+
+        default:
+          return "text-danger";
+      }
     }
   }
 });
@@ -3854,7 +3924,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.myChart.update();
 
         _this.progress = false;
-        console.log(_this.data);
       });
     },
     removeInfoChart: function removeInfoChart() {
@@ -87093,12 +87162,24 @@ var render = function() {
                                     { staticClass: "md-primary" },
                                     [
                                       _vm._v(
-                                        "\n                                       credit_card\n                                       "
+                                        "\n                                       " +
+                                          _vm._s(
+                                            _vm.order.payment.payment_type
+                                              .md_icon
+                                          ) +
+                                          "\n                                       "
                                       ),
                                       _c(
                                         "md-tooltip",
                                         { attrs: { "md-direction": "top" } },
-                                        [_vm._v("Tarjeta de crédito")]
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.order.payment.payment_type
+                                                .name
+                                            )
+                                          )
+                                        ]
                                       )
                                     ],
                                     1
@@ -87108,35 +87189,117 @@ var render = function() {
                                     "div",
                                     { staticClass: "md-list-item-text" },
                                     [
-                                      _c("span", [
-                                        _vm._v(
-                                          "Codigo de refencia: " +
-                                            _vm._s(
-                                              _vm.order.payment.reference_code
+                                      _vm.order.payment.reference_code
+                                        ? _c("span", [
+                                            _vm._v(
+                                              "Codigo de refencia: " +
+                                                _vm._s(
+                                                  _vm.order.payment
+                                                    .reference_code
+                                                )
                                             )
-                                        )
-                                      ]),
+                                          ])
+                                        : _vm._e(),
                                       _vm._v(" "),
-                                      _c("span", [
-                                        _vm._v(
-                                          "Fecha: " +
-                                            _vm._s(_vm.order.payment.date)
-                                        )
-                                      ]),
+                                      _vm.order.payment.reference_code
+                                        ? _c("span", [
+                                            _vm._v(
+                                              "Fecha: " +
+                                                _vm._s(_vm.order.payment.date)
+                                            )
+                                          ])
+                                        : _vm._e(),
                                       _vm._v(" "),
                                       _c("p", [
                                         _vm._v(
-                                          "Monto: S/ " +
-                                            _vm._s(_vm.order.payment.amount)
+                                          _vm._s(
+                                            _vm.order.payment.amount == 0.0
+                                              ? "Falta pagar"
+                                              : "Monto: S/ " +
+                                                _vm.order.payment.amount
+                                          )
                                         )
-                                      ])
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm.order.payment.amount == 0.0
+                                        ? _c("span", [
+                                            _vm._v(
+                                              "Total: S/ " +
+                                                _vm._s(_vm.order.total)
+                                            )
+                                          ])
+                                        : _vm._e()
                                     ]
                                   )
                                 ],
                                 1
                               ),
                               _vm._v(" "),
-                              _c("md-divider")
+                              _vm.order.voucher ? _c("md-divider") : _vm._e(),
+                              _vm._v(" "),
+                              _vm.order.voucher
+                                ? _c("md-subheader", [
+                                    _vm._v("Comprobante de pago")
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.order.voucher
+                                ? _c(
+                                    "md-list-item",
+                                    [
+                                      _c(
+                                        "md-icon",
+                                        { staticClass: "md-primary" },
+                                        [
+                                          _vm._v(
+                                            "\n                                       description\n                                   "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "md-list-item-text" },
+                                        [
+                                          _c("span", [
+                                            _vm._v(
+                                              "Serie: " +
+                                                _vm._s(_vm.order.voucher.serie)
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("span", [
+                                            _vm._v(
+                                              "Numero: " +
+                                                _vm._s(_vm.order.voucher.number)
+                                            )
+                                          ])
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "md-button",
+                                        {
+                                          staticClass:
+                                            "md-icon-button md-list-action",
+                                          attrs: {
+                                            href: _vm.order.voucher.link,
+                                            target: "_blank"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "md-icon",
+                                            { staticClass: "md-primary" },
+                                            [_vm._v("remove_red_eye")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                : _vm._e()
                             ],
                             1
                           ),
@@ -87349,6 +87512,200 @@ var render = function() {
                                     ],
                                     1
                                   )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "md-list-item",
+                            { attrs: { "md-expand": "" } },
+                            [
+                              _c("md-icon", [_vm._v("local_shipping")]),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "md-list-item-text" }, [
+                                _vm._v("Envio")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "md-list",
+                                {
+                                  staticClass: "pl-3 pr-3",
+                                  attrs: { slot: "md-expand" },
+                                  slot: "md-expand"
+                                },
+                                [
+                                  _vm.order.shipping
+                                    ? _c(
+                                        "md-field",
+                                        {
+                                          class: {
+                                            "md-invalid": _vm.errors.first(
+                                              "district"
+                                            )
+                                          }
+                                        },
+                                        [
+                                          _c("md-icon", [
+                                            _vm._v("local_offer")
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "label",
+                                            { attrs: { for: "district_id" } },
+                                            [_vm._v("Distritos")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "md-select",
+                                            {
+                                              directives: [
+                                                {
+                                                  name: "validate",
+                                                  rawName: "v-validate",
+                                                  value: "required",
+                                                  expression: "'required'"
+                                                }
+                                              ],
+                                              attrs: {
+                                                name: "district_id",
+                                                id: "district_id",
+                                                "data-vv-as": "distritos",
+                                                "data-vv-name": "district",
+                                                disabled: true
+                                              },
+                                              model: {
+                                                value:
+                                                  _vm.order.shipping
+                                                    .district_id,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.order.shipping,
+                                                    "district_id",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression:
+                                                  "order.shipping.district_id"
+                                              }
+                                            },
+                                            _vm._l(_vm.districs, function(
+                                              district
+                                            ) {
+                                              return _c(
+                                                "md-option",
+                                                {
+                                                  key: district.id_ubigeo,
+                                                  attrs: {
+                                                    value: district.id_ubigeo
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      district.nombre_ubigeo
+                                                    )
+                                                  )
+                                                ]
+                                              )
+                                            }),
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            { staticClass: "md-error" },
+                                            [
+                                              _vm._v(
+                                                "@" +
+                                                  _vm._s(
+                                                    _vm.errors.first("district")
+                                                  )
+                                              )
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.order.shipping
+                                    ? _c(
+                                        "md-field",
+                                        {
+                                          class: {
+                                            "md-invalid": _vm.errors.first(
+                                              "address"
+                                            )
+                                          }
+                                        },
+                                        [
+                                          _c("md-icon", [
+                                            _vm._v("location_on")
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("label", [_vm._v("Dirección")]),
+                                          _vm._v(" "),
+                                          _c("md-input", {
+                                            directives: [
+                                              {
+                                                name: "validate",
+                                                rawName: "v-validate",
+                                                value: "required|min:5",
+                                                expression: "'required|min:5'"
+                                              }
+                                            ],
+                                            attrs: {
+                                              "data-vv-as": "dirección",
+                                              "data-vv-name": "address",
+                                              disabled: true,
+                                              maxlength: "191"
+                                            },
+                                            model: {
+                                              value: _vm.order.shipping.address,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.order.shipping,
+                                                  "address",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "order.shipping.address"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            { staticClass: "md-error" },
+                                            [
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm.errors.first("address")
+                                                )
+                                              )
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  !_vm.order.shipping
+                                    ? _c(
+                                        "div",
+                                        { staticClass: "pt-2 pb-2" },
+                                        [
+                                          _c("md-icon", [_vm._v("store")]),
+                                          _vm._v(
+                                            " Recoger en tienda\n                                   "
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e()
                                 ],
                                 1
                               )
@@ -87611,8 +87968,7 @@ var render = function() {
                               {
                                 attrs: {
                                   "md-label": "Monto",
-                                  "md-sort-by": "amount",
-                                  "md-numeric": ""
+                                  "md-sort-by": "amount"
                                 }
                               },
                               [_vm._v("S/ " + _vm._s(item.payment.amount))]
@@ -89408,32 +89764,28 @@ var render = function() {
                           [_vm._v(_vm._s(item.name))]
                         ),
                         _vm._v(" "),
-                        item.price
-                          ? _c(
-                              "md-table-cell",
-                              {
-                                attrs: {
-                                  "md-label": "Precio",
-                                  "md-sort-by": "price",
-                                  "md-numeric": ""
-                                }
-                              },
-                              [_vm._v("S/ " + _vm._s(item.price))]
-                            )
-                          : _vm._e(),
+                        _c(
+                          "md-table-cell",
+                          {
+                            attrs: {
+                              "md-label": "Precio",
+                              "md-sort-by": "price",
+                              "md-numeric": ""
+                            }
+                          },
+                          [_vm._v("S/ " + _vm._s(item.price))]
+                        ),
                         _vm._v(" "),
-                        item.url
-                          ? _c(
-                              "md-table-cell",
-                              {
-                                attrs: {
-                                  "md-label": "Url",
-                                  "md-sort-by": "url"
-                                }
-                              },
-                              [_vm._v(_vm._s(item.url))]
-                            )
-                          : _vm._e(),
+                        _c(
+                          "md-table-cell",
+                          {
+                            attrs: {
+                              "md-label": "Stock",
+                              "md-sort-by": "stock"
+                            }
+                          },
+                          [_vm._v(_vm._s(item.stock))]
+                        ),
                         _vm._v(" "),
                         _c(
                           "md-table-cell",
@@ -90129,6 +90481,17 @@ var render = function() {
                               "md-table-cell",
                               {
                                 attrs: {
+                                  "md-label": "Numero",
+                                  "md-sort-by": "id"
+                                }
+                              },
+                              [_vm._v(_vm._s(item.id))]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "md-table-cell",
+                              {
+                                attrs: {
                                   "md-label": "Cliente",
                                   "md-sort-by": "customer"
                                 }
@@ -90139,7 +90502,9 @@ var render = function() {
                             _c(
                               "md-table-cell",
                               {
-                                staticClass: "let",
+                                class:
+                                  "text-capitalize " +
+                                  _vm.getColorState(item.state),
                                 attrs: {
                                   "md-label": "Estado",
                                   "md-sort-by": "state"

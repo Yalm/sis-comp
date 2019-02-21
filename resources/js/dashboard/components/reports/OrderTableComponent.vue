@@ -20,8 +20,9 @@
             </md-table-empty-state>
 
             <md-table-row slot="md-table-row" slot-scope="{ item }">
+                <md-table-cell md-label="Numero" md-sort-by="id">{{ item.id }}</md-table-cell>
                 <md-table-cell md-label="Cliente" md-sort-by="customer">{{ item.customer }}</md-table-cell>
-                <md-table-cell md-label="Estado" md-sort-by="state" class="let">{{ item.state }}</md-table-cell>
+                <md-table-cell md-label="Estado" md-sort-by="state" :class="`text-capitalize ${getColorState(item.state)}`">{{ item.state }}</md-table-cell>
                 <md-table-cell md-label="Monto" md-sort-by="amount">S/ {{ item.amount }}</md-table-cell>
                 <md-table-cell md-label="Metodo P." md-sort-by="method">{{ item.method }}</md-table-cell>
                 <md-table-cell md-label="Fecha" md-sort-by="date" class="let">{{ item.date }}</md-table-cell>
@@ -69,7 +70,6 @@ export default {
             axios.get(`/admin/reports/purchases?date_init=${this.date_init.toJSON()}&date_end=${this.date_end.toJSON()}&page=1`).then(response => {
                 this.orders = response.data;
                 this.progress = false;
-                console.log(this.orders);
             });
         },nextPage(page){
             this.progress = true;
@@ -85,10 +85,27 @@ export default {
                 headStyles: { fillColor: [0, 0, 0]},
                 body: this.orders.data,
                 margin: {left: 10,top: 50},
-                columns: [{header: 'Cliente', dataKey: 'customer'}, {header: 'Estado', dataKey: 'state'},
+                columns: [{header: 'Numero', dataKey: 'id'},{header: 'Cliente', dataKey: 'customer'}, {header: 'Estado', dataKey: 'state'},
                 {header: 'Monto', dataKey: 'amount'}, {header: 'Metodo P.', dataKey: 'method'}, {header: 'Fecha', dataKey: 'date'}]
             });
             pdfdoc.save('reporte.pdf');
+        },getColorState(id){
+            switch (id) {
+                case 'cancelado':
+                    return 'text-danger';
+                    break;
+                case 'completado':
+                    return 'text-success';
+                    break;
+                case 'pendiente de revisión':
+                    return 'text-warning';
+                    break;
+                case 'enviado':
+                    return 'text-primary';
+                    break;
+                default:
+                    return "text-danger";
+            }
         }
     }
 };

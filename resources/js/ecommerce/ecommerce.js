@@ -13,7 +13,6 @@ import router from './router';
 import es from 'vee-validate/dist/locale/es';
 import VeeValidate, { Validator } from 'vee-validate';
 
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -57,11 +56,54 @@ const ecommerce = new Vue({
     data: {
         count: 0,
         mutableList: [],
-        tokenCulqui: null
+        tokenCulqui: null,
+        districtP: null
     },
     created() {
         axios.get('/count-cart').then( response => {
             this.count = response.data;
         });
+    },methods: {
+        getDistrict(){
+            axios.get('/json/ubigeo/distritos.json').then(response => {
+                const data = response.data['3656'];
+                this.districtP = data.find(x => x.id_ubigeo === document.getElementById('district').dataset.value).nombre_ubigeo;
+            });
+        },
+        deleteOrder(id){
+            this.$swal.fire({
+                title: '¿Estás seguro?',
+                text: "¡No podrás revertir esto!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '¡Sí, cancelar!'
+              }).then((result) => {
+                if (result.value) {
+                    this.$swal({title:'Espera por favor...',allowEscapeKey: false,allowOutsideClick: false});
+                    this.$swal.showLoading();
+                    axios.delete(`/profile/orders/${id}`).then(() => {
+                        const state = document.getElementById(`tdstate${id}`);
+                        state.innerHTML = 'Cancelado';
+                        state.removeAttribute("class");
+                        state.style.color = '#dc3545';
+                        document.getElementById(`btn${id}`).remove();
+
+                        this.$swal.hideLoading();
+                        this.$swal.fire(
+                            'Cancelado',
+                            'Su pedido ha sido eliminado.',
+                            'success'
+                        )
+                    }).catch(err => {
+                        this.$swal.hideLoading();
+                        this.$swal.fire(
+                            'Opps...',
+                            'Algo salio mal',
+                            'error'
+                        );
+                    });
+                }
+            });
+        }
     }
 });

@@ -98,7 +98,6 @@ export default {
                 }
                 this.myChart.update();
                 this.progress = false;
-                console.log(this.data);
             });
         },removeInfoChart(){
             this.myChart.data.labels = [];

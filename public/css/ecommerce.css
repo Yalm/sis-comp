@@ -11043,6 +11043,8 @@ ul {
 
 .qty .num-qty {
   -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   border: 1px solid #313537;
   color: #666;
   text-align: center;
@@ -11074,9 +11076,16 @@ ul {
   font-size: 100%;
 }
 
+.qty input[type=number] {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+}
+
 .qty input::-webkit-outer-spin-button,
 .qty input::-webkit-inner-spin-button {
   -webkit-appearance: none;
+          appearance: none;
 }
 
 .qty .full-width-height {

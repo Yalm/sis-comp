@@ -1937,6 +1937,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ShippingComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ShippingComponent */ "./resources/js/ecommerce/components/ShippingComponent.vue");
 //
 //
 //
@@ -2049,15 +2050,99 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['products', 'total', 'culqui', 'token'],
+  props: ['products', 'total', 'culqui', 'token', 'payments'],
   data: function data() {
     return {
       plus_info: null,
       method: false,
-      terms: false,
       order: null,
-      errToken: false
+      errToken: false,
+      shippingAmount: 0,
+      active: 'first',
+      first: false,
+      second: false,
+      third: false,
+      quarter: false,
+      secondStepError: null,
+      shipping: null,
+      methodPayment: Object
     };
   },
   mounted: function mounted() {
@@ -2071,8 +2156,11 @@ __webpack_require__.r(__webpack_exports__);
       title: 'SIS & COMP',
       currency: 'PEN',
       description: 'Lo mejor en equipos de computo y accesorios',
-      amount: this.total * 100
+      amount: (this.total * 100).toFixed(2)
     });
+  },
+  components: {
+    Shipping: _ShippingComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   methods: {
     openCulqui: function openCulqui() {
@@ -2089,7 +2177,8 @@ __webpack_require__.r(__webpack_exports__);
           axios.post('/checkout', {
             token: _this.token,
             plus_info: _this.plus_info,
-            method: _this.method
+            method: _this.method,
+            shipping: _this.shipping
           }).then(function (response) {
             _this.$swal.hideLoading();
 
@@ -2120,17 +2209,72 @@ __webpack_require__.r(__webpack_exports__);
       this.$swal.hideLoading();
       this.$swal.close();
       Culqi.open();
+    },
+    setDone: function setDone(id, index) {
+      this[id] = true;
+      this.secondStepError = null;
+
+      if (index) {
+        this.active = index;
+      }
+    },
+    payment: function payment() {
+      switch (this.method) {
+        case 1:
+          this.openCulqui();
+          break;
+
+        case 2:
+          this.paymentDelivery();
+          break;
+      }
+    },
+    paymentDelivery: function paymentDelivery() {
+      var _this2 = this;
+
+      this.$swal({
+        title: 'Espera por favor...',
+        allowEscapeKey: false,
+        allowOutsideClick: false
+      });
+      this.$swal.showLoading();
+      axios.post('/checkout', {
+        plus_info: this.plus_info,
+        method: this.method,
+        shipping: this.shipping
+      }).then(function (response) {
+        console.log(response.data);
+
+        _this2.$swal.hideLoading();
+
+        _this2.$swal.close();
+
+        _this2.order = response.data.data;
+
+        _this2.$emit('count', 0);
+      }).catch(function (err) {
+        _this2.$swal.hideLoading();
+
+        _this2.$swal.fire('Opps...', 'Algo salio mal', 'error');
+      });
     }
   },
   computed: {
     completed: function completed() {
-      return this.method && this.terms;
+      return this.method;
     }
   },
   watch: {
     token: function token() {
       this.openCulqui();
       this.errToken = false;
+    },
+    method: function method() {
+      var _this3 = this;
+
+      this.methodPayment = this.payments.find(function (x) {
+        return x.id === _this3.method;
+      });
     }
   }
 });
@@ -2288,6 +2432,178 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.$swal('Error', 'Stock superado', 'error');
       });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/ecommerce/components/ShippingComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/ecommerce/components/ShippingComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      methodShipping: 'store',
+      validatedAddress: 'min:5',
+      departament: '2534',
+      departaments: Array,
+      provinces: Array,
+      province: '2557',
+      locationDistrict: '3657',
+      locationDistricts: Array,
+      district: '2559',
+      districs: Array,
+      address: null
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('../json/ubigeo/distritos.json').then(function (responseDistricts) {
+      _this.locationDistricts = responseDistricts.data['3656'];
+    });
+    axios.get('../json/ubigeo/departamentos.json').then(function (response) {
+      _this.departaments = response.data;
+    });
+  },
+  methods: {
+    changeProvince: function changeProvince(departament_id) {
+      var _this2 = this;
+
+      axios.get('../json/ubigeo/provincias.json').then(function (responseProvinces) {
+        _this2.shipping.provinces = responseProvinces.data[departament_id];
+        _this2.shipping.province = _this2.shipping.provinces[0].id_ubigeo;
+      });
+    },
+    changeDistrict: function changeDistrict(province_id) {
+      var _this3 = this;
+
+      axios.get('../json/ubigeo/distritos.json').then(function (responseDistricts) {
+        _this3.shipping.districts = responseDistricts.data[province_id];
+        _this3.shipping.district = _this3.shipping.districts[0].id_ubigeo;
+      });
+    },
+    shippingChange: function shippingChange(shippingMethod) {
+      switch (shippingMethod) {
+        case 'tab-store':
+          this.methodShipping = 'store';
+          this.validatedAddress = 'min:5';
+          this.$emit('shippingChange', 0);
+          break;
+
+        case 'tab-location':
+          this.methodShipping = 'location';
+          this.validatedAddress = 'min:5|required';
+          this.$emit('shippingChange', 10);
+          break;
+
+        case 'tab-truck':
+          this.methodShipping = 'truck';
+          this.validatedAddress = 'min:5';
+          this.$emit('shippingChange', 15);
+          break;
+      }
+    },
+    setDone: function setDone() {
+      var _this4 = this;
+
+      this.$validator.validate().then(function (result) {
+        if (result) {
+          _this4.$emit('data', _this4.createData());
+
+          _this4.$emit('next', {
+            id: 'second',
+            index: 'third'
+          });
+        } else {
+          _this4.$emit('err', 'Error');
+        }
+      });
+    },
+    createData: function createData() {
+      var _this5 = this;
+
+      switch (this.methodShipping) {
+        case 'store':
+          return null;
+          break;
+
+        case 'location':
+          var shipping = {
+            district: {
+              id: this.locationDistrict,
+              name: this.locationDistricts.find(function (x) {
+                return x.id_ubigeo === _this5.locationDistrict;
+              }).nombre_ubigeo
+            },
+            address: this.address
+          };
+          return shipping;
+          break;
+      }
     }
   }
 });
@@ -49581,224 +49897,445 @@ var render = function() {
       !_vm.order
         ? _c(
             "div",
-            { staticClass: "col-md-6" },
+            { staticClass: "col-12 pb-3" },
             [
-              _c("h2", [_vm._v("INFORMACIÓN EXTRA")]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Si desea dejarnos un comentario acerca de su pedido, por favor, escríbalo a continuación"
-                )
-              ]),
-              _vm._v(" "),
               _c(
-                "md-field",
-                { class: { "md-invalid": _vm.errors.first("plus_info") } },
-                [
-                  _c("label", [_vm._v("Información extra")]),
-                  _vm._v(" "),
-                  _c("md-textarea", {
-                    directives: [
-                      {
-                        name: "validate",
-                        rawName: "v-validate",
-                        value: "min:5",
-                        expression: "'min:5'"
-                      }
-                    ],
-                    attrs: {
-                      "data-vv-as": "información extra",
-                      "data-vv-name": "plus_info",
-                      maxlength: "500"
-                    },
-                    model: {
-                      value: _vm.plus_info,
-                      callback: function($$v) {
-                        _vm.plus_info = $$v
-                      },
-                      expression: "plus_info"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("md-icon", [_vm._v("description")]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "md-error" }, [
-                    _vm._v(_vm._s(_vm.errors.first("plus_info")))
-                  ])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("h2", [_vm._v("MÉTODO DE PAGO")]),
-              _vm._v(" "),
-              _c(
-                "md-radio",
+                "md-steppers",
                 {
-                  directives: [
-                    {
-                      name: "validate",
-                      rawName: "v-validate",
-                      value: "required",
-                      expression: "'required'"
+                  attrs: { "md-active-step": _vm.active, "md-linear": "" },
+                  on: {
+                    "update:mdActiveStep": function($event) {
+                      _vm.active = $event
                     }
-                  ],
-                  staticClass: "md-primary",
-                  attrs: { "data-vv-name": "card", value: "card" },
-                  model: {
-                    value: _vm.method,
-                    callback: function($$v) {
-                      _vm.method = $$v
-                    },
-                    expression: "method"
                   }
                 },
                 [
-                  _vm._v(
-                    "Tarjeta de crédito o débito | Visa, Mastercard y más!"
+                  _c(
+                    "md-step",
+                    {
+                      attrs: {
+                        id: "first",
+                        "md-label": "Información extra",
+                        "md-error": _vm.errors.first("plus_info"),
+                        "md-editable": false,
+                        "md-description": "Opcional",
+                        "md-done": _vm.first
+                      },
+                      on: {
+                        "update:mdDone": function($event) {
+                          _vm.first = $event
+                        }
+                      }
+                    },
+                    [
+                      _c("p", [
+                        _vm._v(
+                          "Si desea dejarnos un comentario acerca de su pedido, por favor, escríbalo a continuación"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "md-field",
+                        {
+                          class: { "md-invalid": _vm.errors.first("plus_info") }
+                        },
+                        [
+                          _c("label", [_vm._v("Información extra")]),
+                          _vm._v(" "),
+                          _c("md-textarea", {
+                            directives: [
+                              {
+                                name: "validate",
+                                rawName: "v-validate",
+                                value: "min:5",
+                                expression: "'min:5'"
+                              }
+                            ],
+                            attrs: {
+                              "data-vv-as": "información extra",
+                              "data-vv-name": "plus_info",
+                              maxlength: "500"
+                            },
+                            model: {
+                              value: _vm.plus_info,
+                              callback: function($$v) {
+                                _vm.plus_info = $$v
+                              },
+                              expression: "plus_info"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("md-icon", [_vm._v("description")]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "md-error" }, [
+                            _vm._v(_vm._s(_vm.errors.first("plus_info")))
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "md-button",
+                        {
+                          staticClass: "md-raised md-primary",
+                          attrs: {
+                            disabled: _vm.errors.first("plus_info")
+                              ? true
+                              : false
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.setDone("first", "second")
+                            }
+                          }
+                        },
+                        [_vm._v("Continuar")]
+                      )
+                    ],
+                    1
                   ),
-                  _c("br"),
-                  _vm._v(
-                    "\n                Finalize con su compra para procesar de inmediato su pedido.\n            "
+                  _vm._v(" "),
+                  _c(
+                    "md-step",
+                    {
+                      staticClass: "pt-4",
+                      attrs: {
+                        id: "second",
+                        "md-label": "Dirección de envío",
+                        "md-error": _vm.secondStepError,
+                        "md-editable": false,
+                        "md-done": _vm.second
+                      },
+                      on: {
+                        "update:mdDone": function($event) {
+                          _vm.second = $event
+                        }
+                      }
+                    },
+                    [
+                      _c("Shipping", {
+                        on: {
+                          next: function($event) {
+                            _vm.setDone($event.id, $event.index)
+                          },
+                          err: function($event) {
+                            _vm.secondStepError = $event
+                          },
+                          shippingChange: function($event) {
+                            _vm.shippingAmount = $event
+                          },
+                          data: function($event) {
+                            _vm.shipping = $event
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "md-step",
+                    {
+                      attrs: {
+                        id: "third",
+                        "md-label": "Metodo de pago",
+                        "md-editable": false,
+                        "md-done": _vm.third
+                      },
+                      on: {
+                        "update:mdDone": function($event) {
+                          _vm.third = $event
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "ul",
+                        { staticClass: "p-0 m-0" },
+                        _vm._l(_vm.payments, function(payment) {
+                          return _c(
+                            "li",
+                            { key: payment.id },
+                            [
+                              _c(
+                                "md-radio",
+                                {
+                                  staticClass: "md-primary",
+                                  attrs: { value: payment.id },
+                                  model: {
+                                    value: _vm.method,
+                                    callback: function($$v) {
+                                      _vm.method = $$v
+                                    },
+                                    expression: "method"
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                " +
+                                      _vm._s(payment.text_user) +
+                                      "\n                            "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        }),
+                        0
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "md-button",
+                        {
+                          staticClass: "md-raised md-primary",
+                          attrs: { disabled: !_vm.completed },
+                          on: {
+                            click: function($event) {
+                              _vm.setDone("third", "quarter")
+                            }
+                          }
+                        },
+                        [_vm._v("Continuar")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "md-step",
+                    {
+                      staticClass: "pt-4",
+                      attrs: {
+                        id: "quarter",
+                        "md-label": "Finalizar pedido",
+                        "md-editable": false,
+                        "md-done": _vm.quarter
+                      },
+                      on: {
+                        "update:mdDone": function($event) {
+                          _vm.quarter = $event
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "row pt-4" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-md-6" },
+                          [
+                            _c(
+                              "md-list",
+                              { staticClass: "md-double-line" },
+                              [
+                                _c("md-subheader", [_vm._v("Metodo de Pago")]),
+                                _vm._v(" "),
+                                _c(
+                                  "md-list-item",
+                                  [
+                                    _c(
+                                      "md-icon",
+                                      { staticClass: "md-primary" },
+                                      [
+                                        _vm._v(
+                                          _vm._s(_vm.methodPayment["md_icon"])
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "md-list-item-text" },
+                                      [
+                                        _c("span", [
+                                          _vm._v(
+                                            _vm._s(_vm.methodPayment.text_user)
+                                          )
+                                        ])
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("md-divider"),
+                                _vm._v(" "),
+                                _vm.shipping
+                                  ? _c("md-subheader", [
+                                      _vm._v("Dirección de envío")
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.shipping
+                                  ? _c(
+                                      "md-list-item",
+                                      [
+                                        _c(
+                                          "md-icon",
+                                          { staticClass: "md-primary" },
+                                          [_vm._v("location_searching")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "md-list-item-text" },
+                                          [
+                                            _vm.shipping.district
+                                              ? _c("span", [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.shipping.district.name
+                                                    )
+                                                  )
+                                                ])
+                                              : _vm._e()
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e()
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "checkout-review-order col-md-6 m-auto"
+                          },
+                          [
+                            _c("table", { staticClass: "table_ch" }, [
+                              _c("thead", [
+                                _c("tr", [
+                                  _c("th", [_vm._v("PRODUCTO")]),
+                                  _vm._v(" "),
+                                  _c("th", { staticClass: "text-right" }, [
+                                    _vm._v("TOTAL")
+                                  ])
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                _vm._l(_vm.products, function(item) {
+                                  return _c(
+                                    "tr",
+                                    { key: item.id, staticClass: "cart_items" },
+                                    [
+                                      _c(
+                                        "td",
+                                        { staticClass: "text_comer_h" },
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              item.name + " x" + item.quantity
+                                            )
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("td", { staticClass: "text-right" }, [
+                                        _vm._v("S/. " + _vm._s(item.price))
+                                      ])
+                                    ]
+                                  )
+                                }),
+                                0
+                              ),
+                              _vm._v(" "),
+                              _c("tfoot", [
+                                _c("tr", { staticClass: "cart-subtotal" }, [
+                                  _c("th", [_vm._v("SUBTOTAL")]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _c("b", { staticClass: "amount" }, [
+                                      _vm._v(
+                                        "\n                                                S/ " +
+                                          _vm._s(_vm.total) +
+                                          "\n                                            "
+                                      )
+                                    ])
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("tr", { staticClass: "cart-subtotal" }, [
+                                  _c("th", [_vm._v("ENVÍO")]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _c("b", { staticClass: "amount" }, [
+                                      _vm._v(
+                                        "\n                                                S/ " +
+                                          _vm._s(
+                                            _vm.shippingAmount.toFixed(2)
+                                          ) +
+                                          "\n                                            "
+                                      )
+                                    ])
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("tr", { staticClass: "order-total" }, [
+                                  _c("th", [_vm._v("TOTAL")]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _c("span", { staticClass: "amount" }, [
+                                      _vm._v(
+                                        "\n                                                S/" +
+                                          _vm._s(
+                                            _vm.total + _vm.shippingAmount
+                                          ) +
+                                          "\n                                            "
+                                      )
+                                    ])
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v("Al hacer tu pedido, aceptas los "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "font-weight-bold",
+                                  attrs: { href: "/terms_and_conditions" }
+                                },
+                                [_vm._v("términos y condiciones")]
+                              ),
+                              _vm._v(" de Sis & Comp.")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "md-button",
+                              {
+                                staticClass: "md-raised md-primary w-100",
+                                attrs: {
+                                  disabled: _vm.errors.any() || !_vm.completed
+                                },
+                                on: {
+                                  click: function($event) {
+                                    _vm.payment()
+                                  }
+                                }
+                              },
+                              [_vm._v("REALIZAR PEDIDO")]
+                            )
+                          ],
+                          1
+                        )
+                      ])
+                    ]
                   )
-                ]
-              ),
-              _vm._v(" "),
-              _c("span", { staticClass: "md-error" }, [
-                _vm._v(_vm._s(_vm.errors.first("card")))
-              ])
+                ],
+                1
+              )
             ],
             1
           )
-        : _vm._e(),
-      _vm._v(" "),
-      !_vm.order
-        ? _c("div", { staticClass: "col-md-6" }, [
-            _c(
-              "div",
-              { staticClass: "checkout-review-order" },
-              [
-                _c("table", { staticClass: "table_ch cl5" }, [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    _vm._l(_vm.products, function(item) {
-                      return _c(
-                        "tr",
-                        { key: item.id, staticClass: "cart_items" },
-                        [
-                          _c("td", { staticClass: "text_comer_h" }, [
-                            _vm._v(_vm._s(item.name + " x" + item.quantity))
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-right" }, [
-                            _vm._v("S/. " + _vm._s(item.price))
-                          ])
-                        ]
-                      )
-                    }),
-                    0
-                  ),
-                  _vm._v(" "),
-                  _c("tfoot", [
-                    _c("tr", { staticClass: "cart-subtotal" }, [
-                      _c("th", [_vm._v("SUBTOTAL")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("b", { staticClass: "amount" }, [
-                          _vm._v(
-                            "\n                                    S/" +
-                              _vm._s(_vm.total) +
-                              "\n                                "
-                          )
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", { staticClass: "order-total" }, [
-                      _c("th", [_vm._v("TOTAL")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("span", { staticClass: "amount" }, [
-                          _vm._v(
-                            "\n                                    S/." +
-                              _vm._s(_vm.total) +
-                              "\n                                "
-                          )
-                        ])
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "md-checkbox",
-                  {
-                    directives: [
-                      {
-                        name: "validate",
-                        rawName: "v-validate",
-                        value: "required",
-                        expression: "'required'"
-                      }
-                    ],
-                    staticClass: "md-primary mt-0",
-                    attrs: { "data-vv-name": "terms" },
-                    model: {
-                      value: _vm.terms,
-                      callback: function($$v) {
-                        _vm.terms = $$v
-                      },
-                      expression: "terms"
-                    }
-                  },
-                  [
-                    _vm._v("He leído y estoy de acuerdo con los "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "hover_ch",
-                        attrs: { href: "/terms_and_conditions" }
-                      },
-                      [_vm._v("términos y condiciones")]
-                    ),
-                    _vm._v(" de la web")
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "span",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.errors.has("terms"),
-                        expression: "errors.has('terms')"
-                      }
-                    ],
-                    staticClass: "help text-danger"
-                  },
-                  [_vm._v(_vm._s(_vm.errors.first("terms")))]
-                ),
-                _vm._v(" "),
-                _c(
-                  "md-button",
-                  {
-                    staticClass: "md-raised md-primary w-100",
-                    attrs: { disabled: _vm.errors.any() || !_vm.completed },
-                    on: {
-                      click: function($event) {
-                        _vm.openCulqui()
-                      }
-                    }
-                  },
-                  [_vm._v("REALIZAR PEDIDO")]
-                )
-              ],
-              1
-            )
-          ])
         : _vm._e(),
       _vm._v(" "),
       _vm.order
@@ -49826,7 +50363,7 @@ var render = function() {
                 _c("span", [_vm._v("Total:")]),
                 _vm._v(" "),
                 _c("strong", { staticClass: "ml-2" }, [
-                  _vm._v("S/" + _vm._s(_vm.total))
+                  _vm._v("S/" + _vm._s(_vm.total + _vm.shippingAmount))
                 ])
               ]),
               _vm._v(" "),
@@ -49834,13 +50371,7 @@ var render = function() {
                 _c("span", [_vm._v("Metodo de Pago:")]),
                 _vm._v(" "),
                 _c("strong", { staticClass: "ml-2" }, [
-                  _vm._v(
-                    _vm._s(
-                      this.method == "card"
-                        ? "Tarjeta de crédito"
-                        : "Déposito bancario"
-                    )
-                  )
+                  _vm._v(_vm._s(this.methodPayment.name))
                 ])
               ])
             ]),
@@ -49848,7 +50379,7 @@ var render = function() {
             _c("h3", [_vm._v("Pedido detalle")]),
             _vm._v(" "),
             _c("table", { staticClass: "table mt-3" }, [
-              _vm._m(1),
+              _vm._m(0),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -49881,13 +50412,15 @@ var render = function() {
                   _c("td", [_vm._v("Metododo de Pago:")]),
                   _vm._v(" "),
                   _c("td", { staticClass: "text-right" }, [
-                    _vm._v(
-                      _vm._s(
-                        this.method == "card"
-                          ? "Tarjeta de crédito"
-                          : "Déposito bancario"
-                      )
-                    )
+                    _vm._v(_vm._s(this.methodPayment.name))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", { staticClass: "cart-subtotal font-weight-bold" }, [
+                  _c("td", [_vm._v("Envío:")]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-right" }, [
+                    _vm._v("S/ " + _vm._s(_vm.shippingAmount.toFixed(2)))
                   ])
                 ]),
                 _vm._v(" "),
@@ -49895,7 +50428,7 @@ var render = function() {
                   _c("td", [_vm._v("Total:")]),
                   _vm._v(" "),
                   _c("td", { staticClass: "text-right total" }, [
-                    _vm._v("S/" + _vm._s(_vm.total))
+                    _vm._v("S/ " + _vm._s(_vm.total + _vm.shippingAmount))
                   ])
                 ])
               ])
@@ -49906,18 +50439,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("PRODUCTO")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-right" }, [_vm._v("TOTAL")])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -50183,6 +50704,188 @@ var render = function() {
       ])
     ])
   ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/ecommerce/components/ShippingComponent.vue?vue&type=template&id=52a861fa&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/ecommerce/components/ShippingComponent.vue?vue&type=template&id=52a861fa& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "md-tabs",
+        {
+          attrs: { "md-alignment": "fixed" },
+          on: {
+            "md-changed": function($event) {
+              _vm.shippingChange($event)
+            }
+          }
+        },
+        [
+          _c(
+            "md-tab",
+            {
+              attrs: {
+                id: "tab-store",
+                "md-label": "Recoger en tienda",
+                "md-icon": "store"
+              }
+            },
+            [
+              _c("p", { staticClass: "pt-3" }, [
+                _vm._v(
+                  " Para recoger tus artículos en Sis & Comp, debes llevar el número de pedido y un\n                documento oficial de entidad con foto."
+                )
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "pt-2" }, [
+                _vm._v("Para mas información lee nuestros "),
+                _c("b", [
+                  _c("a", { attrs: { href: "/" } }, [
+                    _vm._v("Terminos de Envio y Entrega")
+                  ])
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "md-tab",
+            {
+              attrs: {
+                id: "tab-location",
+                "md-label": "Envío a domicilio",
+                name: "movies",
+                "md-icon": "location_on"
+              }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "alert alert-warning col-12 mt-3",
+                  attrs: { role: "alert" }
+                },
+                [
+                  _vm._v(
+                    "\n                Por el momento solo se envía para los distritos de Huancayo.\n            "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "md-field",
+                [
+                  _c("label", { attrs: { for: "districtLo" } }, [
+                    _vm._v("Distrito")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "md-select",
+                    {
+                      attrs: { id: "districtLo", placeholder: "Distrito" },
+                      model: {
+                        value: _vm.locationDistrict,
+                        callback: function($$v) {
+                          _vm.locationDistrict = $$v
+                        },
+                        expression: "locationDistrict"
+                      }
+                    },
+                    _vm._l(_vm.locationDistricts, function(district) {
+                      return _c(
+                        "md-option",
+                        {
+                          key: district.id_ubigeo,
+                          attrs: { value: district.id_ubigeo }
+                        },
+                        [_vm._v(_vm._s(district.nombre_ubigeo))]
+                      )
+                    }),
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "md-field",
+                { class: { "md-invalid": _vm.errors.first("address") } },
+                [
+                  _c("md-icon", [_vm._v("location_on")]),
+                  _vm._v(" "),
+                  _c("label", [_vm._v("Dirección")]),
+                  _vm._v(" "),
+                  _c("md-input", {
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: _vm.validatedAddress,
+                        expression: "validatedAddress"
+                      }
+                    ],
+                    attrs: {
+                      "data-vv-as": "dirección",
+                      "data-vv-name": "address",
+                      maxlength: "191"
+                    },
+                    model: {
+                      value: _vm.address,
+                      callback: function($$v) {
+                        _vm.address = $$v
+                      },
+                      expression: "address"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "md-error" }, [
+                    _vm._v(_vm._s(_vm.errors.first("address")))
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "md-button",
+        {
+          staticClass: "md-raised md-primary",
+          on: {
+            click: function($event) {
+              _vm.setDone("second", "third")
+            }
+          }
+        },
+        [_vm._v("Continuar")]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -64967,6 +65670,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/ecommerce/components/ShippingComponent.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/ecommerce/components/ShippingComponent.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ShippingComponent_vue_vue_type_template_id_52a861fa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ShippingComponent.vue?vue&type=template&id=52a861fa& */ "./resources/js/ecommerce/components/ShippingComponent.vue?vue&type=template&id=52a861fa&");
+/* harmony import */ var _ShippingComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ShippingComponent.vue?vue&type=script&lang=js& */ "./resources/js/ecommerce/components/ShippingComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ShippingComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ShippingComponent_vue_vue_type_template_id_52a861fa___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ShippingComponent_vue_vue_type_template_id_52a861fa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/ecommerce/components/ShippingComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/ecommerce/components/ShippingComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/ecommerce/components/ShippingComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ShippingComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ShippingComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/ecommerce/components/ShippingComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ShippingComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/ecommerce/components/ShippingComponent.vue?vue&type=template&id=52a861fa&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/ecommerce/components/ShippingComponent.vue?vue&type=template&id=52a861fa& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShippingComponent_vue_vue_type_template_id_52a861fa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ShippingComponent.vue?vue&type=template&id=52a861fa& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/ecommerce/components/ShippingComponent.vue?vue&type=template&id=52a861fa&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShippingComponent_vue_vue_type_template_id_52a861fa___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShippingComponent_vue_vue_type_template_id_52a861fa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/ecommerce/components/ShopComponent.vue":
 /*!*************************************************************!*\
   !*** ./resources/js/ecommerce/components/ShopComponent.vue ***!
@@ -65107,7 +65879,8 @@ var ecommerce = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   data: {
     count: 0,
     mutableList: [],
-    tokenCulqui: null
+    tokenCulqui: null,
+    districtP: null
   },
   created: function created() {
     var _this = this;
@@ -65115,6 +65888,55 @@ var ecommerce = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
     axios.get('/count-cart').then(function (response) {
       _this.count = response.data;
     });
+  },
+  methods: {
+    getDistrict: function getDistrict() {
+      var _this2 = this;
+
+      axios.get('/json/ubigeo/distritos.json').then(function (response) {
+        var data = response.data['3656'];
+        _this2.districtP = data.find(function (x) {
+          return x.id_ubigeo === document.getElementById('district').dataset.value;
+        }).nombre_ubigeo;
+      });
+    },
+    deleteOrder: function deleteOrder(id) {
+      var _this3 = this;
+
+      this.$swal.fire({
+        title: '¿Estás seguro?',
+        text: "¡No podrás revertir esto!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: '¡Sí, cancelar!'
+      }).then(function (result) {
+        if (result.value) {
+          _this3.$swal({
+            title: 'Espera por favor...',
+            allowEscapeKey: false,
+            allowOutsideClick: false
+          });
+
+          _this3.$swal.showLoading();
+
+          axios.delete("/profile/orders/".concat(id)).then(function () {
+            var state = document.getElementById("tdstate".concat(id));
+            state.innerHTML = 'Cancelado';
+            state.removeAttribute("class");
+            state.style.color = '#dc3545';
+            document.getElementById("btn".concat(id)).remove();
+
+            _this3.$swal.hideLoading();
+
+            _this3.$swal.fire('Cancelado', 'Su pedido ha sido eliminado.', 'success');
+          }).catch(function (err) {
+            _this3.$swal.hideLoading();
+
+            _this3.$swal.fire('Opps...', 'Algo salio mal', 'error');
+          });
+        }
+      });
+    }
   }
 });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
@@ -65145,6 +65967,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_material_dist_components__WEB
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_material_dist_components__WEBPACK_IMPORTED_MODULE_1__["MdCard"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_material_dist_components__WEBPACK_IMPORTED_MODULE_1__["MdRadio"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_material_dist_components__WEBPACK_IMPORTED_MODULE_1__["MdChips"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_material_dist_components__WEBPACK_IMPORTED_MODULE_1__["MdTabs"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_material_dist_components__WEBPACK_IMPORTED_MODULE_1__["MdSteppers"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_material_dist_components__WEBPACK_IMPORTED_MODULE_1__["MdMenu"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_material_dist_components__WEBPACK_IMPORTED_MODULE_1__["MdList"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_material_dist_components__WEBPACK_IMPORTED_MODULE_1__["MdSubheader"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_material_dist_components__WEBPACK_IMPORTED_MODULE_1__["MdDivider"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_material_dist_components__WEBPACK_IMPORTED_MODULE_1__["MdAvatar"]);
 
 /***/ }),
 

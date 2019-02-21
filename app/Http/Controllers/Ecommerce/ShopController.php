@@ -22,7 +22,7 @@ class ShopController extends Controller
 
     public function product($url)
     {
-        $product = Product::where('url',$url)->first();
+        $product = Product::where('url',$url)->firstOrFail();
         $product->cover = Storage::disk('gcs')->url($product->cover);
         return view('ecommerce/show-product',['product' => $product]);
     }

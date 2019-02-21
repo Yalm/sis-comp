@@ -21,8 +21,8 @@
             <md-table-row slot="md-table-row" slot-scope="{ item }">
                 <md-table-cell v-if="false" md-label="ID" md-sort-by="id" md-numeric>{{ item.id }}</md-table-cell>
                 <md-table-cell md-label="Nombre" md-sort-by="name">{{ item.name }}</md-table-cell>
-                <md-table-cell v-if="item.price" md-label="Precio" md-sort-by="price" md-numeric>S/ {{ item.price }}</md-table-cell>
-                <md-table-cell v-if="item.url" md-label="Url" md-sort-by="url">{{ item.url }}</md-table-cell>
+                <md-table-cell md-label="Precio" md-sort-by="price" md-numeric>S/ {{ item.price }}</md-table-cell>
+                <md-table-cell md-label="Stock" md-sort-by="stock">{{ item.stock }}</md-table-cell>
                 <md-table-cell md-label="Acciones" >
                     <md-button @click="edit(item)" class="md-icon-button"><md-icon>edit</md-icon></md-button>
                     <md-button class="md-icon-button" @click="deleteItem(item)"><md-icon>delete</md-icon></md-button>
@@ -40,9 +40,7 @@ export default {
     data: () => ({
         search: null,
         searched: [],
-    }),mounted(){
-        //console.dir(this.data);
-    },
+    }),
     methods: {
         searchOnTable (){
             axios.get(`/admin/products?json=true&search=${this.search}`).then(response => {

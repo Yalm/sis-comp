@@ -27,14 +27,12 @@ class OrderController extends Controller
         ]);
     }
 
-    public function canceled($id)
+    public function destroy($id)
     {
-        $data = Crypt::decrypt($id);
-        $order = Order::findOrFail($data['id']);
+        $order = Order::findOrFail($id);
         $order->state_id = 1;
         $order->save();
-
-        return back();
+        return response()->json(['message' => 'su pedido ha sido cancelado con éxito'],200);
     }
 
 }

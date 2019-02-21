@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             UserTableSeeder::class,
             PaymentTypeTableSeeder::class,
             CustomerTableSeeder::class,
-            OrderTableSeeder::class
+            OrderTableSeeder::class,
+            VoucherTypeTableSeeder::class
         ]);
     }
 }

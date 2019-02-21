@@ -35,6 +35,9 @@ class ReportController extends Controller
 
         $orders = Order::purchases($date_init,$date_end)->paginate(9);
         $orders->each(function($order){
+            if($order->amount == 0.00){
+                $order->amount = $order->getTotal();
+            }
             $order->date = $order->created_at->format('F d \,\ Y ');
         });
         return response()->json($orders);

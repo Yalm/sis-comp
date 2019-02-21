@@ -34,19 +34,32 @@
 
                             <md-list class="md-double-line w-100 mb-3">
                                 <md-subheader>Pago</md-subheader>
-
                                 <md-list-item>
                                     <md-icon class="md-primary">
-                                        credit_card
-                                        <md-tooltip md-direction="top">Tarjeta de crédito</md-tooltip>
+                                        {{order.payment.payment_type.md_icon}}
+                                        <md-tooltip md-direction="top">{{order.payment.payment_type.name}}</md-tooltip>
                                     </md-icon>
                                     <div class="md-list-item-text">
-                                        <span>Codigo de refencia: {{order.payment.reference_code}}</span>
-                                        <span>Fecha: {{order.payment.date}}</span>
-                                        <p>Monto: S/ {{order.payment.amount}}</p>
+                                        <span v-if="order.payment.reference_code">Codigo de refencia: {{order.payment.reference_code}}</span>
+                                        <span v-if="order.payment.reference_code">Fecha: {{order.payment.date}}</span>
+                                        <p>{{ order.payment.amount == 0.00 ? 'Falta pagar':`Monto: S/ ${order.payment.amount}` }}</p>
+                                        <span v-if="order.payment.amount == 0.00">Total: S/ {{order.total}}</span>
                                     </div>
                                 </md-list-item>
-                                <md-divider></md-divider>
+                                <md-divider v-if="order.voucher"></md-divider>
+                                <md-subheader v-if="order.voucher">Comprobante de pago</md-subheader>
+                                <md-list-item v-if="order.voucher">
+                                    <md-icon class="md-primary">
+                                        description
+                                    </md-icon>
+                                    <div class="md-list-item-text">
+                                        <span>Serie: {{order.voucher.serie}}</span>
+                                        <span>Numero: {{order.voucher.number}}</span>
+                                    </div>
+                                    <md-button class="md-icon-button md-list-action" :href="order.voucher.link" target="_blank">
+                                        <md-icon class="md-primary">remove_red_eye</md-icon>
+                                    </md-button>
+                                </md-list-item>
                             </md-list>
                             <md-table class="w-100">
                                 <md-table-toolbar class="pl-1">
@@ -90,6 +103,31 @@
                                 </md-list>
                             </md-list-item>
                             <md-list-item md-expand>
+                                <md-icon>local_shipping</md-icon>
+                                <span class="md-list-item-text">Envio</span>
+
+                                <md-list slot="md-expand" class="pl-3 pr-3">
+                                    <md-field v-bind:class="{ 'md-invalid': errors.first('district') }" v-if="order.shipping">
+                                        <md-icon>local_offer</md-icon>
+                                        <label for="district_id">Distritos</label>
+                                        <md-select name="district_id" id="district_id"
+                                            data-vv-as="distritos" data-vv-name="district" v-validate="'required'" v-model="order.shipping.district_id" :disabled="true">
+                                            <md-option v-for="district of districs" :key="district.id_ubigeo" :value="district.id_ubigeo">{{district.nombre_ubigeo}}</md-option>
+                                        </md-select>
+                                        <span class="md-error">@{{ errors.first('district') }}</span>
+                                    </md-field>
+                                    <md-field v-bind:class="{ 'md-invalid': errors.first('address') }" v-if="order.shipping">
+                                        <md-icon>location_on</md-icon>
+                                        <label>Dirección</label>
+                                        <md-input v-model="order.shipping.address" data-vv-as="dirección" data-vv-name="address" :disabled="true" v-validate="'required|min:5'" maxlength="191"></md-input>
+                                            <span class="md-error">{{ errors.first('address') }}</span>
+                                    </md-field>
+                                    <div v-if="!order.shipping" class="pt-2 pb-2">
+                                        <md-icon>store</md-icon> Recoger en tienda
+                                    </div>
+                                </md-list>
+                            </md-list-item>
+                            <md-list-item md-expand>
                                 <md-icon>account_box</md-icon>
                                 <span class="md-list-item-text">Cliente</span>
                                 <md-list slot="md-expand" class="pl-3 pr-3">
@@ -126,24 +164,41 @@ export default {
     data: () => ({
         sending: false,
         order: null,
-        showSnackbar: false
+        showSnackbar: false,
+        districs: Array
     }),mounted(){
         this.order = this.orderp;
+        axios.get('/json/ubigeo/distritos.json').then(responseDistricts => {
+            this.districs = responseDistricts.data['3656'];
+        });
     },methods: {
         update(){
             this.sending = true;
             axios.put(`/admin/orders/${this.order.id}`,this.order).then(response=>{
                 this.showSnackbar = true;
                 this.sending = false;
+                this.order = response.data;
             }).catch(err => {
                 if(err.response.status == 422){
                     for(const error in err.response.data.errors){
-                            this.$validator.errors.add({
-                                field: error,
-                                msg: err.response.data.errors[error][0]
-                            });
-                        }
+                        this.$validator.errors.add({
+                            field: error,
+                            msg: err.response.data.errors[error][0]
+                        });
                     }
+                }else if(err.response.status == 409){
+                    this.$swal.fire(
+                        'Opps...',
+                        err.response.data.message,
+                        'error'
+                    );
+                }else{
+                    this.$swal.fire(
+                        'Opps...',
+                        'Algo salio mal',
+                        'error'
+                    );
+                }
                 this.sending = false;
             });
         }
